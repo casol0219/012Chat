@@ -1,0 +1,1237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>832</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>832</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>832</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>1280</width>
+     <height>832</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1280</width>
+     <height>832</height>
+    </size>
+   </property>
+   <widget class="QLabel" name="Bg_Sidebar">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>380</width>
+      <height>832</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>380</width>
+      <height>832</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>380</width>
+      <height>832</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resource/resource.qrc">:/layout/Sidebar.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Bg_Header">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>0</y>
+      <width>900</width>
+      <height>56</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resource/resource.qrc">:/layout/Header.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Bg_ChatArea">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>56</y>
+      <width>900</width>
+      <height>721</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resource/resource.qrc">:/layout/ChatFrame.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Bg_Input">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>777</y>
+      <width>900</width>
+      <height>56</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resource/resource.qrc">:/layout/Footer.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Btn_emoji">
+    <property name="geometry">
+     <rect>
+      <x>424</x>
+      <y>793</y>
+      <width>24</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+selection-background-color: rgb(255, 255, 255);
+border-image: url(:/icon/emoji-happy.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="Input_inputBox">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>793</y>
+      <width>724</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit {
+	border-style: none;
+	font: 12pt &quot;SEBANG Gothic&quot;;
+	color: #495057;
+}</string>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="plainText">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Text here...</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Btn_send">
+    <property name="geometry">
+     <rect>
+      <x>1208</x>
+      <y>793</y>
+      <width>24</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+selection-background-color: rgb(255, 255, 255);
+border-image: url(:/icon/send.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Btn_exit">
+    <property name="geometry">
+     <rect>
+      <x>44</x>
+      <y>793</y>
+      <width>24</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+selection-background-color: rgb(255, 255, 255);
+border-image: url(:/icon/exit.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Text_ProfileHeader">
+    <property name="geometry">
+     <rect>
+      <x>76</x>
+      <y>20</y>
+      <width>271</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 9pt &quot;SEBANG Gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Profile&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Text_MemberHeader">
+    <property name="geometry">
+     <rect>
+      <x>76</x>
+      <y>210</y>
+      <width>271</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 9pt &quot;SEBANG Gothic&quot;;</string>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Members&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Text_Exit">
+    <property name="geometry">
+     <rect>
+      <x>76</x>
+      <y>795</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 9pt &quot;SEBANG Gothic&quot;;</string>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Exit&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Text_ChatFrom">
+    <property name="geometry">
+     <rect>
+      <x>456</x>
+      <y>20</y>
+      <width>151</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 9pt &quot;SEBANG Gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Chat : ALL&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Img_myProfile">
+    <property name="geometry">
+     <rect>
+      <x>44</x>
+      <y>92</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resource/resource.qrc">:/image/profile-circle.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Text_myName">
+    <property name="geometry">
+     <rect>
+      <x>108</x>
+      <y>100</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;SEBANG Gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Noname&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Text_myStatus">
+    <property name="geometry">
+     <rect>
+      <x>126</x>
+      <y>122</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;SEBANG Gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;ONLINE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Img_MyStatus">
+    <property name="geometry">
+     <rect>
+      <x>108</x>
+      <y>125</y>
+      <width>12</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resource/resource.qrc">:/icon/OnlineDot.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Btn_edit">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>100</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::WheelFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #F4F0FD;
+selection-background-color: #F4F0FD;
+border-image: url(:/icon/edit.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="memberTable">
+    <property name="geometry">
+     <rect>
+      <x>44</x>
+      <y>262</y>
+      <width>311</width>
+      <height>498</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">* {
+	font: 9pt &quot;SEBANG Gothic&quot;;
+}
+QTableWidget {
+	border-style: none;
+}
+QScrollBar::sub-page:vertical {
+	background: none;
+}
+QScrollBar::add-page:vertical {
+	background: none;
+}
+QScrollBar:vertical {
+	border-style: none;
+	background:white;
+	width:10px;    
+	margin: 0px 0px 0px 0px;
+}
+QScrollBar::handle:vertical {         
+	min-height: 0px;
+	border-style: none;
+	border-radius: 5px;
+	background-color: #6F3FE2;
+}
+QScrollBar::add-line:vertical {       
+	height: 0px;
+	subcontrol-position: bottom;
+	subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+	height: 0 px;
+	subcontrol-position: top;
+	subcontrol-origin: margin;
+}
+</string>
+    </property>
+    <property name="verticalScrollMode">
+     <enum>QAbstractItemView::ScrollPerItem</enum>
+    </property>
+    <property name="showGrid">
+     <bool>false</bool>
+    </property>
+    <property name="rowCount">
+     <number>22</number>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>140</number>
+    </attribute>
+    <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <row>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>2</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>새 열</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>3</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>4</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>6</string>
+     </property>
+    </row>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <column>
+     <property name="text">
+      <string>Name</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>세방고딕 Regular</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignLeading|AlignVCenter</set>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Status</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>SEBANG Gothic</family>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignLeading|AlignVCenter</set>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string>Noname123</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string>Online</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="1" column="0">
+     <property name="text">
+      <string>Noname456</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="1" column="1">
+     <property name="text">
+      <string>Away</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="2" column="0">
+     <property name="text">
+      <string>Noname789</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="2" column="1">
+     <property name="text">
+      <string>Online</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="3" column="0">
+     <property name="text">
+      <string>Noname1</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="3" column="1">
+     <property name="text">
+      <string>Online</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="4" column="0">
+     <property name="text">
+      <string>Noname2</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="4" column="1">
+     <property name="text">
+      <string>Away</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="5" column="0">
+     <property name="text">
+      <string>Noname3</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="5" column="1">
+     <property name="text">
+      <string>Away</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="6" column="0">
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item row="7" column="0">
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>56</y>
+      <width>890</width>
+      <height>710</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>890</width>
+      <height>710</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>890</width>
+      <height>710</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">* {
+	border-style: none;
+	background-color: #F1F8F9;
+}
+QScrollBar::sub-page:vertical {
+	background: none;
+}
+QScrollBar::add-page:vertical {
+	background: none;
+}
+QScrollBar:vertical {
+	border-style: none;
+	background:white;
+	width:10px;    
+	margin: 0px 0px 0px 0px;
+}
+QScrollBar::handle:vertical {         
+	min-height: 0px;
+	border-style: none;
+	border-radius: 5px;
+	background-color: #A1D0D4;
+}
+QScrollBar::add-line:vertical {       
+	height: 0px;
+	subcontrol-position: bottom;
+	subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+	height: 0 px;
+	subcontrol-position: top;
+	subcontrol-origin: margin;
+}</string>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>-99</y>
+       <width>870</width>
+       <height>809</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>870</width>
+       <height>688</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>870</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="1" column="0">
+       <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0,0" columnstretch="0">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <item row="4" column="0">
+         <widget class="QFrame" name="chat_frame5">
+          <property name="minimumSize">
+           <size>
+            <width>830</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>880</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_15">
+           <item>
+            <widget class="QLabel" name="name5">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>830</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>880</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #343A40;
+font: 700 10pt &quot;SEBANG Gothic&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Noname5:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="content5">
+             <property name="minimumSize">
+              <size>
+               <width>830</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>880</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #343A40;
+font: 10pt &quot;SEBANG Gothic&quot;;</string>
+             </property>
+             <property name="text">
+              <string>이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 지금 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권에 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 존 F. 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살 당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서..</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QFrame" name="chat_frame1">
+          <property name="minimumSize">
+           <size>
+            <width>830</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>880</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0">
+           <item>
+            <widget class="QLabel" name="entry_msg1">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>830</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>880</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #ADB5BD;
+font: 10pt &quot;SEBANG Gothic&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Noname1님이 입장하셨습니다.</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QFrame" name="chat_frame3">
+          <property name="minimumSize">
+           <size>
+            <width>830</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>880</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_13">
+           <item>
+            <widget class="QLabel" name="name3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>830</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>880</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #343A40;
+font: 700 10pt &quot;SEBANG Gothic&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Noname3:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="content3">
+             <property name="minimumSize">
+              <size>
+               <width>830</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>880</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #343A40;
+font: 10pt &quot;SEBANG Gothic&quot;;</string>
+             </property>
+             <property name="text">
+              <string>이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 지금 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권에 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 존 F. 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살 당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서..</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QFrame" name="chat_frame6">
+          <property name="minimumSize">
+           <size>
+            <width>830</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>880</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QLabel" name="name6">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>830</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>880</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #343A40;
+font: 700 10pt &quot;SEBANG Gothic&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Noname6:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="content6">
+             <property name="minimumSize">
+              <size>
+               <width>830</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>880</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #343A40;
+font: 10pt &quot;SEBANG Gothic&quot;;</string>
+             </property>
+             <property name="text">
+              <string>이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 지금 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권에 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 존 F. 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살 당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서..</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QFrame" name="chat_frame2">
+          <property name="minimumSize">
+           <size>
+            <width>830</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>880</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_14">
+           <item>
+            <widget class="QLabel" name="name2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>830</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>880</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #343A40;
+font: 700 10pt &quot;SEBANG Gothic&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Noname2:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="content2">
+             <property name="minimumSize">
+              <size>
+               <width>830</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>880</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #343A40;
+font: 10pt &quot;SEBANG Gothic&quot;;</string>
+             </property>
+             <property name="text">
+              <string>이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 지금 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권에 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 존 F. 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살 당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서..</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QFrame" name="chat_frame4">
+          <property name="minimumSize">
+           <size>
+            <width>830</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>880</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_16">
+           <item>
+            <widget class="QLabel" name="name4">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>830</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>880</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #343A40;
+font: 700 10pt &quot;SEBANG Gothic&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Noname4:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="content4">
+             <property name="minimumSize">
+              <size>
+               <width>830</width>
+               <height>16</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>880</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #343A40;
+font: 10pt &quot;SEBANG Gothic&quot;;</string>
+             </property>
+             <property name="text">
+              <string>이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 지금 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권에 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 존 F. 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살 당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서..</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <zorder>Bg_Input</zorder>
+   <zorder>Bg_Sidebar</zorder>
+   <zorder>Bg_Header</zorder>
+   <zorder>Bg_ChatArea</zorder>
+   <zorder>Btn_emoji</zorder>
+   <zorder>Input_inputBox</zorder>
+   <zorder>Btn_send</zorder>
+   <zorder>Btn_exit</zorder>
+   <zorder>Text_ProfileHeader</zorder>
+   <zorder>Text_MemberHeader</zorder>
+   <zorder>Text_Exit</zorder>
+   <zorder>Text_ChatFrom</zorder>
+   <zorder>Img_myProfile</zorder>
+   <zorder>Text_myName</zorder>
+   <zorder>Text_myStatus</zorder>
+   <zorder>Img_MyStatus</zorder>
+   <zorder>Btn_edit</zorder>
+   <zorder>memberTable</zorder>
+   <zorder>scrollArea</zorder>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../resource/resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
