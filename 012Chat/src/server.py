@@ -17,16 +17,16 @@ def groupChat(c_socket, addr):
     
     while True:
         try:
-            data = c_socket.recv(1024)
+            data = c_socket.recv(1024).decode('utf-8')
+            message, sendTime = data.split(' ', 1)
+            
             if not data:
                 print(f">> {sender_info} 님이 대화방을 나갔습니다.")
                 break
-            
-            decoded_data = data.decode('utf-8', errors='ignore')  #인코딩된 데이터를 디코딩하고, 에러 발생 시 무시
 
             # 금칙어 처리
-            filtered_data = changeWord(decoded_data)
-            print(sender_info, '-', decoded_data)  #오가는 메시지들 로깅
+            filtered_data = changeWord(data)
+            print(f"{sender_info} - {message}  {sendTime}")  #오가는 메시지들 로깅
             
             for client in c_list:
                 if client != c_socket:
