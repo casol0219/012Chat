@@ -18,7 +18,7 @@ def groupChat(c_socket, addr):
     while True:
         try:
             data = c_socket.recv(1024).decode('utf-8')
-            recvMessage, sendTime = data.split(' ', 1)
+            recvMessage, sendTime = data.split(' ', 1)    #받은 메시지, 보낸 시간 분리
             
             if not data:
                 print(f">> {sender_info} 님이 대화방을 나갔습니다.")
