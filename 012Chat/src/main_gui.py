@@ -602,10 +602,11 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
     #서버로 부터 이모티콘 이름 받으면 content5에 출력
     #def show_emogi(self, filename):
 
-    #서버로 부터 받은 메시지 contetn5에 출력 (아직 안됨..)
+    #서버로 부터 받은 닉네임, 데이터, 보낸 시간 contetn5에 출력 (아직 안됨..)
     def print_data(self):
-        server_data = decoded_data
-        self.content5.setText(server_data)
+        self.content5.setText(sender)
+        self.content5.setText(data)
+        self.content5.setText(dataTime)
 
     #메시지 서버로 보내기(엔터 치면 보내지는 것도 구현해야 함 - 아직은 버튼 클릭으로만 보내짐)
     def send(self):
