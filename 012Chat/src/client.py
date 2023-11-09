@@ -6,13 +6,15 @@ import threading
 decoded_data = ""
 c_socket = None
 
-#서버 연결
+# 서버 연결
 def connect_to_server(HOST, PORT):
     global c_socket
     c_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     c_socket.connect((HOST, PORT))
 
-    threading.Thread(target=receive).start()
+    receive_thread = threading.Thread(target=receive)
+    receive_thread.daemon = True  #쓰레드를 데몬으로 설정
+    receive_thread.start()
 
 #서버 데이터 받기
 def receive():
@@ -23,8 +25,8 @@ def receive():
             if not recvData: 
                 break
             decoded_data = recvData.decode('utf-8', errors='ignore')
-            data, sender, dataTime = decoded_data.split(' ', 2) #받은 데이터 각 변수로 분리
             print(decoded_data)  #데이터 수신 시 출력 (디버깅용)
+            data, sender, dataTime = decoded_data.split(' ', 2) #받은 데이터 각 변수로 분리
 
         except Exception as e:
             print(f"데이터 수신 중 예외 발생: {e}")
@@ -40,4 +42,7 @@ def send_message(message):
 
 #서버 연결 종료
 def close_connection():
-    c_socket.close()
+    try:
+        c_socket.close()
+    except Exception as e:
+        print(f"서버 연결 종료 중 오류 발생: {e}")
