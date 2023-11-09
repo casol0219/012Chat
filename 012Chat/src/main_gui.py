@@ -27,7 +27,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.initUI()
-        self.port = 123
+        self.port = 12346
         self.nickname = f"Noname{self.port}"
         self.status = None
         self.executeChangeNickname()
@@ -44,6 +44,10 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             connect_to_server(HOST, PORT)
         except Exception as e:
             print('에러 발생:', e)
+
+    # 메인 윈도우가 닫힐 때 호출되는 메서드
+    def closeEvent(self):
+        close_connection()
 
     #__init__ end
     def setupUi(self, MainWindow):
@@ -603,10 +607,10 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
     #def show_emogi(self, filename):
 
     #서버로 부터 받은 닉네임, 데이터, 보낸 시간 contetn5에 출력 (아직 안됨..)
-    def print_data(self):
-        self.content5.setText(sender)
-        self.content5.setText(data)
-        self.content5.setText(dataTime)
+    def print_data(self, sender, data, dataTime):
+        display_text = f"Sender: {sender}\nData: {data}\nTime: {dataTime}"
+        self.content5.setText(display_text)
+
 
     #메시지 서버로 보내기(엔터 치면 보내지는 것도 구현해야 함 - 아직은 버튼 클릭으로만 보내짐)
     def send(self):
@@ -633,11 +637,6 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         if self.emojiWidget is None:
             self.emojiWidget = widget_emoji.Ui_Form()
         self.emojiWidget.show()
-
-    #메인 윈도우가 닫힐 때 서버 연결 종료
-    def close(self, event):
-        event.accept()
-        close_connection() 
 
 import resource_rc
 
