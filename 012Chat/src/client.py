@@ -35,7 +35,7 @@ def connect_to_server():
 #메시지, 입력 시간 보내기
 def send_message(message):
     sendTime = time.strftime('%Y/%m/%d %H:%M:%S')  # 입력시간
-    c_socket.send((f'{message} {sendTime}').encode('utf-8'))
+    c_socket.send((f'{sendTime} {message}').encode('utf-8'))
 
 #서버 연결 종료
 def close_connection():
