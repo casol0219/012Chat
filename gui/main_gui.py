@@ -10,9 +10,6 @@
 from os import environ
 from PyQt5 import QtCore, QtGui, QtWidgets
 import dialog_gui1, dialog_exit, widget_emoji
-from server import *
-from client import *
-import sys
 
 #해상도 설정 start
 def suppress_qt_warnings():
@@ -20,35 +17,16 @@ def suppress_qt_warnings():
     environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
     environ["QT_SCREEN_SCALE_FACTORS"] = "1"
     environ["QT_SCALE_FACTOR"] = "1"
-
 #해상도 설정 end
 class Ui_MainWindow(QtWidgets.QMainWindow):
     #__init__ start
     def __init__(self):
         super().__init__()
-        self.initUI()
-        self.port = 12346
+        self.port = 123
         self.nickname = f"Noname{self.port}"
         self.status = None
         self.executeChangeNickname()
         self.emojiWidget = None
-    
-    def initUI(self):
-        self.connect_server()
-    
-    #서버 연결
-    def connect_server(self):
-        try:
-            HOST = "127.0.0.1"
-            PORT = 12346
-            connect_to_server(HOST, PORT)
-        except Exception as e:
-            print('에러 발생:', e)
-
-    # 메인 윈도우가 닫힐 때 호출되는 메서드
-    def closeEvent(self):
-        close_connection()
-
     #__init__ end
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -598,26 +576,36 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         item.setText(_translate("MainWindow", "Noname002"))
         item = self.memberTable.item(3, 0)
         item.setText(_translate("MainWindow", "Noname005"))
+        item = self.memberTable.item(4, 0)
+        item.setText(_translate("MainWindow", "Noname009"))
+        item = self.memberTable.item(5, 0)
+        item.setText(_translate("MainWindow", "Noname010"))
+        item = self.memberTable.item(6, 0)
+        item.setText(_translate("MainWindow", "Noname025"))
+        item = self.memberTable.item(7, 0)
+        item.setText(_translate("MainWindow", "Noname067"))
+        item = self.memberTable.item(8, 0)
+        item.setText(_translate("MainWindow", "Noname189"))
+        item = self.memberTable.item(9, 0)
+        item.setText(_translate("MainWindow", "Noname342"))
         self.memberTable.setSortingEnabled(__sortingEnabled)
-        
-        self.name5.setText(_translate("MainWindow", "Welcome 012 Chat!"))
+        self.name5.setText(_translate("MainWindow", "Noname5:"))
+        self.content5.setText(_translate("MainWindow", "이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 지금 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권에 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 존 F. 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살 당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서.."))
+        self.name1.setText(_translate("MainWindow", "Noname1:"))
+        self.content1.setText(_translate("MainWindow", "이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 지금 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권에 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 존 F. 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살 당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서.."))
+        self.name3.setText(_translate("MainWindow", "Noname3:"))
+        self.content3.setText(_translate("MainWindow", "이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 지금 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권에 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 존 F. 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살 당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서.."))
+        self.name6.setText(_translate("MainWindow", "Noname6:"))
+        self.content6.setText(_translate("MainWindow", "이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 지금 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권에 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 존 F. 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살 당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서.."))
+        self.name2.setText(_translate("MainWindow", "Noname2:"))
+        self.content2.setText(_translate("MainWindow", "이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 지금 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권에 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 존 F. 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살 당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서.."))
+        self.name4.setText(_translate("MainWindow", "Noname4:"))
+        self.content4.setText(_translate("MainWindow", "이 편지는 영국에서 최초로 시작되어 일년에 한 바퀴 돌면서 받는 사람에게 행운을 주었고 지금 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권에 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 존 F. 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살 당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들 것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서.."))
         self.label_2.setText(_translate("MainWindow", "입력중인 사용자: Noname1, Noname3, Noname4"))
 
-    #서버로 부터 이모티콘 이름 받으면 content5에 출력
-    #def show_emogi(self, filename):
-
-    #서버로 부터 받은 닉네임, 데이터, 보낸 시간 contetn5에 출력 (아직 안됨..)
-    def print_data(self, sender, data, dataTime):
-        display_text = f"Sender: {sender}\nData: {data}\nTime: {dataTime}"
-        self.content5.setText(display_text)
-
-
-    #메시지 서버로 보내기(엔터 치면 보내지는 것도 구현해야 함 - 아직은 버튼 클릭으로만 보내짐)
     def send(self):
-        message = self.Input_inputBox.toPlainText()
-        if message:    
-            send_message(message)  
-            self.Input_inputBox.clear()  #메시지 보낸 후 입력창 비우기
+        print(self.Input_inputBox.toPlainText())
+        self.Input_inputBox.setPlainText("")
 
     def executeChangeNickname(self):
         changeDialog = dialog_gui1.Ui_Dialog()
@@ -627,7 +615,6 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
                 self.Text_myName.setText(self.nickname)
             except:
                 return
-
     def executeExit(self):
         exitDialog = dialog_exit.Ui_Dialog_Exit()
         if exitDialog.exec_():
@@ -639,6 +626,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.emojiWidget.show()
 
 import resource_rc
+
 
 if __name__ == "__main__":
     import sys
