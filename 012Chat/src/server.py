@@ -1,15 +1,15 @@
 import socket
 from _thread import *
+from changeWord import *
+from whisper import *
+from p2pchat import *
 
+#접속자 목록
 c_list = []
-forbidden_words = ["시발", "미친", "꺼져", "놈"]
 
-def changeWord(message):
-    for word in forbidden_words:
-        if word in message:
-            replacement = '@' * len(word)   #금칙어에 걸린 문자열의 길이만큼 '@'로 대체
-            message = message.replace(word, replacement)
-    return message
+#클라이언트들 간의 연결 저장
+c_connections={}
+
 
 def groupChat(c_socket, addr):
     sender_info = f"{addr[0]}:{addr[1]}"  #발신자 정보
@@ -18,20 +18,44 @@ def groupChat(c_socket, addr):
     while True:
         try:
             data = c_socket.recv(1024).decode('utf-8')
-            recvMessage, sendTime = data.split(' ', 1)    #받은 메시지, 보낸 시간 분리
+            sendTime, recvMessage = data.split(' ', 1)    #받은 메시지, 보낸 시간 분리
             
             if not data:
                 print(f">> {sender_info} 님이 대화방을 나갔습니다.")
                 break
-
-            # 금칙어 처리
-            filtered_data = changeWord(recvMessage)
-            print(f"{sender_info} - {recvMessage}  {sendTime}")  #오가는 메시지들 로깅
             
-            for client in c_list:
-                if client != c_socket:
-                    client.send(filtered_data.encode('utf-8'))
+            #귓속말 기능
+            print(f"testrecvmessage : {recvMessage}")
+            if recvMessage.startswith('/w'):
+                whisper(recvMessage)
 
+            #1:1 대화 기능
+            elif recvMessage.startswith('/p'):
+                p2pchat(recvMessage)
+
+            #1:1 요청 받으면
+            elif c_socket in c_connections:
+                recipient_socket=c_connections[c_socket]
+
+                if recvMessage.lower()=='y':
+                    recipient_socket=c_connections[c_socket]
+                    c_socket.send(f"1:1 대화가 수락되었습니다.".encode())
+                    recipient_socket.send(f"1:1 대화가 수락되었습니다.".encode())
+                elif recvMessage.lower()=='n':
+                    c_socket.send(f"1:1 대화 요청이 거부되었습니다.".encode())
+                    recipient_socket.send(f"1:1 대화 요청이 거부되었습니다.".encode())
+                    del c_connections[c_socket]
+                else:
+                    recipient_socket.send(f"{addr[1]}: {recvMessage}".encode())
+
+            #일반 채팅
+            else:
+                filtered_data = changeWord(recvMessage)
+                print(f"{sender_info} - {recvMessage}  {sendTime}")  #오가는 메시지들 로깅
+                
+                for client in c_list:
+                    if client != c_socket:
+                        client.send(filtered_data.encode('utf-8'))
                     
         except ConnectionResetError as e:
             print(f">> {sender_info} 님이 대화방을 나갔습니다.")
