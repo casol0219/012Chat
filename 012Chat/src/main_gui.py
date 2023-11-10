@@ -34,16 +34,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.emojiWidget = None
     
     def initUI(self):
-        self.connect_server()
-    
-    #서버 연결
-    def connect_server(self):
-        try:
-            HOST = "127.0.0.1"
-            PORT = 12346
-            connect_to_server(HOST, PORT)
-        except Exception as e:
-            print('에러 발생:', e)
+        connect_to_server()
 
     # 메인 윈도우가 닫힐 때 호출되는 메서드
     def closeEvent(self):
