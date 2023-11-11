@@ -15,6 +15,9 @@ from client import *
 class Ui_Form(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
+        self.fontDB = QtGui.QFontDatabase()
+        self.fontDB.addApplicationFont("../resource/SEBANG Gothic.ttf")
+        self.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.setupUi()
 
     #서버로 이모티콘 이름 전송
@@ -42,8 +45,8 @@ class Ui_Form(QtWidgets.QDialog):
         self.Icon_emoji.setObjectName("Icon_emoji")
         self.Text_emoji = QtWidgets.QLabel(self)
         self.Text_emoji.setGeometry(QtCore.QRect(48, 19, 56, 19))
-        self.Text_emoji.setStyleSheet("color: #343A40;\n"
-"font: 11pt \"SEBANG Gothic\";")
+        self.Text_emoji.setStyleSheet("color: #343A40;")
+        self.Text_emoji.setFont(QtGui.QFont("SEBANG Gothic", 11))
         self.Text_emoji.setObjectName("Text_emoji")
         self.Widget_emojiTab = QtWidgets.QWidget(self)
         self.Widget_emojiTab.setGeometry(QtCore.QRect(16, 48, 432, 32))
