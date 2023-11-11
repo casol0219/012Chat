@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>832</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);
+font: 75 10pt &quot;SEBANG Gothic&quot;;</string>
+  </property>
+  <widget class="QLabel" name="Text_ChatFrom">
+   <property name="geometry">
+    <rect>
+     <x>72</x>
+     <y>17</y>
+     <width>701</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 12pt;</string>
+   </property>
+   <property name="text">
+    <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Chat : &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Bg_ChatArea">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>56</y>
+     <width>900</width>
+     <height>721</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string notr="true"/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../resource/resource.qrc">:/layout/ChatFrame.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Btn_send">
+   <property name="geometry">
+    <rect>
+     <x>824</x>
+     <y>793</y>
+     <width>24</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+selection-background-color: rgb(255, 255, 255);
+border-image: url(:/icon/send.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Bg_Input">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>777</y>
+     <width>900</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string notr="true"/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../resource/resource.qrc">:/layout/Footer.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Bg_Header">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>900</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="text">
+    <string notr="true"/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../resource/resource.qrc">:/layout/Header.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QScrollArea" name="scrollArea">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>56</y>
+     <width>890</width>
+     <height>716</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>890</width>
+     <height>716</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>890</width>
+     <height>716</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">* {
+	border-style: none;
+	background-color: #F1F8F9;
+}
+QScrollBar::sub-page:vertical {
+	background: none;
+}
+QScrollBar::add-page:vertical {
+	background: none;
+}
+QScrollBar:vertical {
+	border-style: none;
+	background:#F1F8F9;
+	width:12px;    
+	margin: 0px 0px 0px 0px;
+}
+QScrollBar::handle:vertical {         
+	min-height: 0px;
+	border-style: none;
+	border-radius: 5px;
+	background-color: #A1D0D4;
+}
+QScrollBar::add-line:vertical {       
+	height: 0px;
+	subcontrol-position: bottom;
+	subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+	height: 0 px;
+	subcontrol-position: top;
+	subcontrol-origin: margin;
+}</string>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>870</width>
+      <height>716</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>870</width>
+      <height>688</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>870</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="Text_Chat">
+       <property name="text">
+        <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Name(date):&lt;br&gt;contents&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QPlainTextEdit" name="Input_inputBox">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>790</y>
+     <width>724</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>724</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPlainTextEdit {
+	border-style: none;
+	font-size: 12pt;
+	color: #495057;
+}</string>
+   </property>
+   <property name="plainText">
+    <string notr="true"/>
+   </property>
+   <property name="placeholderText">
+    <string notr="true">Text here...</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Btn_emoji">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>793</y>
+     <width>24</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+selection-background-color: rgb(255, 255, 255);
+border-image: url(:/icon/emoji-happy.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>Bg_Input</zorder>
+  <zorder>Bg_ChatArea</zorder>
+  <zorder>Btn_emoji</zorder>
+  <zorder>Bg_Header</zorder>
+  <zorder>Btn_send</zorder>
+  <zorder>scrollArea</zorder>
+  <zorder>Text_ChatFrom</zorder>
+  <zorder>Input_inputBox</zorder>
+ </widget>
+ <resources>
+  <include location="../resource/resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

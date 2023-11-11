@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>832</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>832</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>832</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">* {
+	font: 10pt &quot;SEBANG Gothic&quot;;
+	color: #343a40;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>1280</width>
+     <height>832</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1280</width>
+     <height>832</height>
+    </size>
+   </property>
+   <widget class="QLabel" name="Bg_Sidebar">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>380</width>
+      <height>832</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>380</width>
+      <height>832</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>380</width>
+      <height>832</height>
+     </size>
+    </property>
+    <property name="text">
+     <string notr="true"/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resource/resource.qrc">:/layout/Sidebar.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Bg_Header">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>0</y>
+      <width>900</width>
+      <height>56</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string notr="true"/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resource/resource.qrc">:/layout/Header.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Bg_ChatArea">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>56</y>
+      <width>900</width>
+      <height>721</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true"/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resource/resource.qrc">:/layout/ChatFrame.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Bg_Input">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>777</y>
+      <width>900</width>
+      <height>56</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true"/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resource/resource.qrc">:/layout/Footer.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Btn_emoji">
+    <property name="geometry">
+     <rect>
+      <x>424</x>
+      <y>793</y>
+      <width>24</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+selection-background-color: rgb(255, 255, 255);
+border-image: url(:/icon/emoji-happy.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="Input_inputBox">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>790</y>
+      <width>724</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit {
+	border-style: none;
+	font-size: 12pt;
+	color: #495057;
+}</string>
+    </property>
+    <property name="plainText">
+     <string notr="true"/>
+    </property>
+    <property name="placeholderText">
+     <string notr="true">Text here...</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Btn_send">
+    <property name="geometry">
+     <rect>
+      <x>1208</x>
+      <y>793</y>
+      <width>24</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+selection-background-color: rgb(255, 255, 255);
+border-image: url(:/icon/send.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Btn_exit">
+    <property name="geometry">
+     <rect>
+      <x>44</x>
+      <y>793</y>
+      <width>24</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+selection-background-color: rgb(255, 255, 255);
+border-image: url(:/icon/exit.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Text_ProfileHeader">
+    <property name="geometry">
+     <rect>
+      <x>76</x>
+      <y>20</y>
+      <width>271</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 12pt;</string>
+    </property>
+    <property name="text">
+     <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Profile&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Text_MemberHeader">
+    <property name="geometry">
+     <rect>
+      <x>76</x>
+      <y>210</y>
+      <width>271</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
+    <property name="text">
+     <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Members&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Text_Exit">
+    <property name="geometry">
+     <rect>
+      <x>76</x>
+      <y>795</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
+    <property name="text">
+     <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Exit&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Text_ChatTarget">
+    <property name="geometry">
+     <rect>
+      <x>456</x>
+      <y>20</y>
+      <width>151</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 12pt;</string>
+    </property>
+    <property name="text">
+     <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Chat : ALL&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Img_myProfile">
+    <property name="geometry">
+     <rect>
+      <x>44</x>
+      <y>92</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true"/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resource/resource.qrc">:/image/profile-circle.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Text_myName">
+    <property name="geometry">
+     <rect>
+      <x>108</x>
+      <y>100</y>
+      <width>201</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 12pt;
+font-weight: 700;</string>
+    </property>
+    <property name="text">
+     <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Noname&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Text_myStatus">
+    <property name="geometry">
+     <rect>
+      <x>126</x>
+      <y>122</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;ONLINE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Img_MyStatus">
+    <property name="geometry">
+     <rect>
+      <x>108</x>
+      <y>125</y>
+      <width>12</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string notr="true"/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../resource/resource.qrc">:/icon/OnlineDot.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Btn_edit">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>100</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::WheelFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #F4F0FD;
+selection-background-color: #F4F0FD;
+border-image: url(:/icon/edit.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="memberTable">
+    <property name="geometry">
+     <rect>
+      <x>44</x>
+      <y>262</y>
+      <width>311</width>
+      <height>498</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">* {
+	font: 9pt &quot;SEBANG Gothic&quot;;
+}
+QTableWidget {
+	border-style: none;
+}
+QScrollBar::sub-page:vertical {
+	background: none;
+}
+QScrollBar::add-page:vertical {
+	background: none;
+}
+QScrollBar:vertical {
+	border-style: none;
+	background:white;
+	width:13px;    
+	margin: 0px 0px 0px 0px;
+}
+QScrollBar::handle:vertical {         
+	min-height: 0px;
+	border-style: none;
+	border-radius: 5px;
+	background-color: #6F3FE2;
+}
+QScrollBar::add-line:vertical {       
+	height: 0px;
+	subcontrol-position: bottom;
+	subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+	height: 0 px;
+	subcontrol-position: top;
+	subcontrol-origin: margin;
+}
+</string>
+    </property>
+    <property name="verticalScrollMode">
+     <enum>QAbstractItemView::ScrollPerItem</enum>
+    </property>
+    <property name="showGrid">
+     <bool>false</bool>
+    </property>
+    <property name="rowCount">
+     <number>22</number>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>140</number>
+    </attribute>
+    <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <row>
+     <property name="text">
+      <string notr="true">1</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string notr="true">2</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string notr="true">새 열</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string notr="true">3</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string notr="true">4</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string notr="true">6</string>
+     </property>
+    </row>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <column>
+     <property name="text">
+      <string notr="true">Name</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>세방고딕 Regular</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignLeading|AlignVCenter</set>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string notr="true">Status</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>SEBANG Gothic</family>
+      </font>
+     </property>
+     <property name="textAlignment">
+      <set>AlignLeading|AlignVCenter</set>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string notr="true">Noname123</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string notr="true">Online</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="1" column="0">
+     <property name="text">
+      <string notr="true">Noname456</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="1" column="1">
+     <property name="text">
+      <string notr="true">Away</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="2" column="0">
+     <property name="text">
+      <string notr="true">Noname789</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="2" column="1">
+     <property name="text">
+      <string notr="true">Online</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="3" column="0">
+     <property name="text">
+      <string notr="true">Noname1</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="3" column="1">
+     <property name="text">
+      <string notr="true">Online</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="4" column="0">
+     <property name="text">
+      <string notr="true">Noname2</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="4" column="1">
+     <property name="text">
+      <string notr="true">Away</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="5" column="0">
+     <property name="text">
+      <string notr="true">Noname3</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="5" column="1">
+     <property name="text">
+      <string notr="true">Away</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsEnabled</set>
+     </property>
+    </item>
+    <item row="6" column="0">
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item row="7" column="0">
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>56</y>
+      <width>890</width>
+      <height>716</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>890</width>
+      <height>716</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>890</width>
+      <height>716</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">* {
+	border-style: none;
+	background-color: #F1F8F9;
+}
+QScrollBar::sub-page:vertical {
+	background: none;
+}
+QScrollBar::add-page:vertical {
+	background: none;
+}
+QScrollBar:vertical {
+	border-style: none;
+	background:#F1F8F9;
+	width:12px;    
+	margin: 0px 0px 0px 0px;
+}
+QScrollBar::handle:vertical {         
+	min-height: 0px;
+	border-style: none;
+	border-radius: 5px;
+	background-color: #A1D0D4;
+}
+QScrollBar::add-line:vertical {       
+	height: 0px;
+	subcontrol-position: bottom;
+	subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+	height: 0 px;
+	subcontrol-position: top;
+	subcontrol-origin: margin;
+}</string>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>870</width>
+       <height>716</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>870</width>
+       <height>688</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>870</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="Text_Chat">
+        <property name="text">
+         <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Name(date):&lt;br&gt;contents&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <zorder>Bg_Input</zorder>
+   <zorder>Bg_Sidebar</zorder>
+   <zorder>Bg_Header</zorder>
+   <zorder>Bg_ChatArea</zorder>
+   <zorder>Btn_emoji</zorder>
+   <zorder>Input_inputBox</zorder>
+   <zorder>Btn_send</zorder>
+   <zorder>Btn_exit</zorder>
+   <zorder>Text_ProfileHeader</zorder>
+   <zorder>Text_MemberHeader</zorder>
+   <zorder>Text_Exit</zorder>
+   <zorder>Text_ChatTarget</zorder>
+   <zorder>Img_myProfile</zorder>
+   <zorder>Text_myName</zorder>
+   <zorder>Text_myStatus</zorder>
+   <zorder>Img_MyStatus</zorder>
+   <zorder>Btn_edit</zorder>
+   <zorder>memberTable</zorder>
+   <zorder>scrollArea</zorder>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../resource/resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
