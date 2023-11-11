@@ -159,14 +159,26 @@ class Ui_Dialog(QtWidgets.QDialog):
 
     def retranslateUi(self, Dialog):
         pass
-    
-    #서버로 부터 이모티콘 이름 받으면 Text_Chat에 출력
-    #def show_emogi(self, filename):
 
-    #서버로 부터 받은 닉네임, 데이터, 보낸 시간 Text_Chat에 출력 (아직 안됨..)
-    def print_data(self, sender, data, dataTime):
-        display_text = f"Sender: {sender}\nData: {data}\nTime: {dataTime}"
-        self.content5.setText(display_text)
+    #서버로부터 받은 데이터 대화창에 출력 (1대1은 아직 X)
+    """def print_data(self, display_text):
+        Data = display_text.split('\n')[1]
+        
+        current_text = self.Text_Chat.text()
+        new_text = current_text + "\n\n" + display_text
+
+        if '.png' in Data:      #이모티콘 출력
+                emoji_path = f":/emoji/{Data}"  #이미지 경로
+                pixmap = QtGui.QPixmap(emoji_path)
+                resized_pixmap = pixmap.scaled(100, 1000, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
+                self.Text_Chat.setPixmap(resized_pixmap)
+
+        else:
+                self.Text_Chat.setText(new_text)
+
+        #메시지 창 풀로 차면 자동으로 스크롤 내려가게
+        self.scrollArea.verticalScrollBar().setValue(self.scrollArea.verticalScrollBar().maximum())
+    """
 
 
     #메시지 서버로 보내기(엔터 치면 보내지는 것도 구현해야 함 - 아직은 버튼 클릭으로만 보내짐)
