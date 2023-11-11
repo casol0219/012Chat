@@ -9,6 +9,7 @@
 
 from os import environ
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
 import dialog_gui1, dialog_exit, dialog_private, widget_emoji
 from server import *
 from client import *
@@ -22,7 +23,22 @@ def suppress_qt_warnings():
     environ["QT_SCALE_FACTOR"] = "1"
 #해상도 설정 end
 
+#엔터치면 메시지 보내기
+class CustomPlainTextEdit(QtWidgets.QPlainTextEdit):
+    def __init__(self, main_window, parent=None):
+        super().__init__(parent)
+        self.main_window = main_window
+
+    def keyPressEvent(self, e):
+        if e.key() in (Qt.Key_Enter, Qt.Key_Return):
+            self.main_window.send()
+        else:
+            super().keyPressEvent(e)
+
 class Ui_MainWindow(QtWidgets.QMainWindow):
+    # 새로운 신호 정의
+    receivedData = QtCore.pyqtSignal(str)
+
     #__init__ start
     def __init__(self):
         super().__init__()
@@ -36,9 +52,11 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.emojiWidget = None
         self.Text_myName = None
         self.executeChangeNickname()
+        # 신호를 슬롯에 연결
+        self.receivedData.connect(self.print_data)
     
     def initUI(self):
-        connect_to_server(self)
+        connect_to_server(self, update_ui_with_data)
 
     # 메인 윈도우가 닫힐 때 호출되는 메서드
     def closeEvent(self):
@@ -94,7 +112,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         #이모티콘 버튼 함수연결 start
         self.Btn_emoji.clicked.connect(self.openEmoji)
         #이모티콘 버튼 함수연결 end
-        self.Input_inputBox = QtWidgets.QPlainTextEdit(self.centralwidget)
+        self.Input_inputBox = CustomPlainTextEdit(self, self.centralwidget)
         self.Input_inputBox.setGeometry(QtCore.QRect(460, 790, 724, 30))
         self.Input_inputBox.setStyleSheet("QPlainTextEdit {\n"
 "    border-style: none;\n"
@@ -368,10 +386,11 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName("gridLayout")
-        self.Text_Chat = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        self.Text_Chat.setText("<html><head/><body><p>Name(date):<br>contents</p></body></html>")
+
+        self.Text_Chat = QtWidgets.QTextEdit(self.scrollAreaWidgetContents)
+        self.Text_Chat.setReadOnly(True)
+
         self.Text_Chat.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
-        self.Text_Chat.setWordWrap(True)
         self.Text_Chat.setObjectName("Text_Chat")
         self.gridLayout.addWidget(self.Text_Chat, 0, 0, 1, 1)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
@@ -405,16 +424,28 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.memberTable.setSortingEnabled(False)
         self.memberTable.setSortingEnabled(__sortingEnabled)
 
-    #서버로 부터 이모티콘 이름 받으면 Text_Chat에 출력
-    #def show_emogi(self, filename):
+    #서버로부터 받은 데이터 대화창에 출력
+    def print_data(self, display_text):
+        Data = display_text.split('\n')[1]
+        emogi_data = display_text.split('\n')[0]
+    
+        #이모티콘 출력
+        if '.png' in Data:
+            emoji_path = f":/emoji/{Data}"      #이미지 경로
+            img_tag = f'<img src="{emoji_path}" width="100" height="100"><br><br>'
+            self.Text_Chat.append(emogi_data)
+            self.Text_Chat.insertHtml("<br><br>")
+            self.Text_Chat.insertHtml(img_tag)
+        else:
+            self.Text_Chat.insertHtml("<br>")
+            self.Text_Chat.append(display_text)
+            self.Text_Chat.insertHtml("<br><br>")
 
-    #서버로 부터 받은 닉네임, 데이터, 보낸 시간 Text_Chat에 출력 (아직 안됨..)
-    def print_data(self, sender, data, dataTime):
-        display_text = f"Sender: {sender}\nData: {data}\nTime: {dataTime}"
-        self.content5.setText(display_text)
+        #메시지 창이 가득 차면 자동으로 아래로 스크롤
+        scrollbar = self.Text_Chat.verticalScrollBar()
+        scrollbar.setValue(scrollbar.maximum())
 
-
-    #메시지 서버로 보내기(엔터 치면 보내지는 것도 구현해야 함 - 아직은 버튼 클릭으로만 보내짐)
+    #메시지 서버로 보내기
     def send(self):
         message = self.Input_inputBox.toPlainText()
         if message:    
@@ -448,6 +479,9 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.emojiWidget.show()
 
 import resource_rc
+
+def update_ui_with_data(data):
+    ui.receivedData.emit(data)
 
 if __name__ == "__main__":
     import sys
