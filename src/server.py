@@ -48,7 +48,9 @@ def groupChat(c_socket, addr):
                     c_name.remove(nickname)
                     
                     nickname = c_socket.recv(1024).decode('utf8').split("::")[-1]
-                else: c_socket.send("NICKNAMECHANGE::TRUE".encode('utf8'))
+                else:
+                    c_socket.send("NICKNAMECHANGE::TRUE".encode('utf8'))
+                    nickname = tmp_nick
                 c_name.append(nickname)
             #닉네임 변경 end
 

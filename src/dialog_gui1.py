@@ -22,6 +22,9 @@ def suppress_qt_warnings():
 class Ui_Dialog(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
+        self.fontDB = QtGui.QFontDatabase()
+        self.fontDB.addApplicationFont("../resource/SEBANG Gothic.ttf")
+        self.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.setupUi()
         self.nickname = None
 
@@ -34,13 +37,13 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.Text_title = QtWidgets.QLabel(self)
         self.Text_title.setGeometry(QtCore.QRect(40, 36, 255, 28))
-        self.Text_title.setStyleSheet("font: 75 12pt \"SEBANG Gothic\";\n"
-"color: #343A40;")
+        self.Text_title.setStyleSheet("color: #343A40;")
+        self.Text_title.setFont(QtGui.QFont("SEBANG Gothic", 12))
         self.Text_title.setObjectName("Text_title")
         self.Text_Contents = QtWidgets.QLabel(self)
         self.Text_Contents.setGeometry(QtCore.QRect(40, 76, 251, 24))
-        self.Text_Contents.setStyleSheet("font: 9pt \"SEBANG Gothic\";\n"
-"color: #343A40;")
+        self.Text_Contents.setStyleSheet("color: #343A40;")
+        self.Text_Contents.setFont(QtGui.QFont("SEBANG Gothic", 9))
         self.Text_Contents.setObjectName("Text_Contents")
         self.Rect_inputBox = QtWidgets.QLabel(self)
         self.Rect_inputBox.setGeometry(QtCore.QRect(40, 104, 670, 44))
@@ -51,11 +54,11 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.Input_text = QtWidgets.QLineEdit(self)
         self.Input_text.setGeometry(QtCore.QRect(56, 117, 638, 17))
         self.Input_text.setStyleSheet("border-style: none;\n"
-"font: 9pt \"SEBANG Gothic\";\n"
 "color: #ADB5BD;")
         self.Input_text.setText("")
         self.Input_text.setMaxLength(12)
         self.Input_text.setObjectName("Input_text")
+        self.Input_text.setFont(QtGui.QFont("SEBANG Gothic", 10))
 
         self.btn_ok = QtWidgets.QPushButton(self)
         self.btn_ok.setGeometry(QtCore.QRect(530, 184, 180, 44))
@@ -64,8 +67,8 @@ class Ui_Dialog(QtWidgets.QDialog):
 "color: rgb(255, 255, 255);\n"
 "selection-color: #6F3FE2;\n"
 "border: 1px solid #6F3FE2;\n"
-"border-radius: 8px;\n"
-"font: 10pt \"SEBANG Gothic\";")
+"border-radius: 8px;\n")
+        self.btn_ok.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.btn_ok.setObjectName("btn_ok")
         self.btn_ok.clicked.connect(self.btnOk_clicked)
         self.btn_no = QtWidgets.QPushButton(self)
@@ -75,9 +78,9 @@ class Ui_Dialog(QtWidgets.QDialog):
 "color: #6F3FE2;\n"
 "selection-color: rgb(255, 255, 255);\n"
 "border: 1px solid #6F3FE2;\n"
-"border-radius: 8px;\n"
-"font: 10pt \"SEBANG Gothic\";")
+"border-radius: 8px;\n")
         self.btn_no.setObjectName("btn_no")
+        self.btn_no.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.btn_no.clicked.connect(self.btnNo_clicked)
 
         self.retranslateUi(self)

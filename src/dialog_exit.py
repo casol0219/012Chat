@@ -21,6 +21,9 @@ def suppress_qt_warnings():
 class Ui_Dialog_Exit(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
+        self.fontDB = QtGui.QFontDatabase()
+        self.fontDB.addApplicationFont("../resource/SEBANG Gothic.ttf")
+        self.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.setupUi()
 
     def setupUi(self):
@@ -37,8 +40,8 @@ class Ui_Dialog_Exit(QtWidgets.QDialog):
 "color: rgb(255, 255, 255);\n"
 "selection-color: #6F3FE2;\n"
 "border: 1px solid #6F3FE2;\n"
-"border-radius: 8px;\n"
-"font: 10pt \"SEBANG Gothic\";")
+"border-radius: 8px;")
+        self.btn_ok.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.btn_ok.setObjectName("btn_ok")
         self.btn_ok.clicked.connect(self.btn_confirm)
 
@@ -49,20 +52,20 @@ class Ui_Dialog_Exit(QtWidgets.QDialog):
 "color: #6F3FE2;\n"
 "selection-color: rgb(255, 255, 255);\n"
 "border: 1px solid #6F3FE2;\n"
-"border-radius: 8px;\n"
-"font: 10pt \"SEBANG Gothic\";")
+"border-radius: 8px;")
+        self.btn_no.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.btn_no.setObjectName("btn_no")
         self.btn_no.clicked.connect(self.btn_cancle)
 
         self.Text_title = QtWidgets.QLabel(self)
         self.Text_title.setGeometry(QtCore.QRect(121, 36, 222, 24))
-        self.Text_title.setStyleSheet("font: 75 12pt \"SEBANG Gothic\";\n"
-"color: #343A40;")
+        self.Text_title.setStyleSheet("color: #343A40;")
+        self.Text_title.setFont(QtGui.QFont("SEBANG Gothic", 12))
         self.Text_title.setObjectName("Text_title")
         self.Text_title_2 = QtWidgets.QLabel(self)
         self.Text_title_2.setGeometry(QtCore.QRect(40, 68, 385, 22))
-        self.Text_title_2.setStyleSheet("font: 75 10pt \"SEBANG Gothic\";\n"
-"color: #ADB5BD;")
+        self.Text_title_2.setStyleSheet("color: #ADB5BD;")
+        self.Text_title_2.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.Text_title_2.setObjectName("Text_title_2")
 
         self.retranslateUi(self)

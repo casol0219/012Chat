@@ -27,6 +27,9 @@ class Ui_Dialog(QtWidgets.QDialog):
         super().__init__()
         #1:1 대화상대
         self.target = None
+        self.fontDB = QtGui.QFontDatabase()
+        self.fontDB.addApplicationFont("../resource/SEBANG Gothic.ttf")
+        self.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.setupUi()
         
 
@@ -38,7 +41,7 @@ class Ui_Dialog(QtWidgets.QDialog):
 "font: 75 10pt \"SEBANG Gothic\";")
         self.Text_ChatTarget = QtWidgets.QLabel(self)
         self.Text_ChatTarget.setGeometry(QtCore.QRect(72, 17, 701, 20))
-        self.Text_ChatTarget.setStyleSheet("font-size: 12pt;")
+        self.Text_ChatTarget.setFont(QtGui.QFont("SEBANG Gothic", 12))
         #1:1 대화상대 표시
         self.Text_ChatTarget.setText(f"<html><head/><body><p>Chat : {self.target}</p></body></html>")
         self.Text_ChatTarget.setTextFormat(QtCore.Qt.AutoText)
@@ -122,6 +125,7 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.Text_Chat.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.Text_Chat.setWordWrap(True)
         self.Text_Chat.setObjectName("Text_Chat")
+        self.Text_Chat.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.gridLayout.addWidget(self.Text_Chat, 0, 0, 1, 1)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.Input_inputBox = QtWidgets.QPlainTextEdit(self)
@@ -129,9 +133,9 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.Input_inputBox.setMinimumSize(QtCore.QSize(724, 30))
         self.Input_inputBox.setStyleSheet("QPlainTextEdit {\n"
 "    border-style: none;\n"
-"    font-size: 12pt;\n"
 "    color: #495057;\n"
 "}")
+        self.Input_inputBox.setFont(QtGui.QFont("SEBANG Gothic", 12))
         self.Input_inputBox.setPlainText("")
         self.Input_inputBox.setPlaceholderText("Text here...")
         self.Input_inputBox.setObjectName("Input_inputBox")

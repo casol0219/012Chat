@@ -45,7 +45,8 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.initUI()
         self.port = my_portNum()
         self.fontDB = QtGui.QFontDatabase()
-        self.fontDB.addApplicationFont(":/font/SEBANG Gothic.ttf")
+        self.fontDB.addApplicationFont("../resource/SEBANG Gothic.ttf")
+        self.fontDB.addApplicationFont("../resource/SEBANG Gothic Bold.ttf")
         self.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.nickname = None
         self.status = "Online"
@@ -70,7 +71,6 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         MainWindow.setMaximumSize(QtCore.QSize(1280, 832))
         MainWindow.setWindowTitle("MainWindow")
         MainWindow.setStyleSheet("* {\n"
-"    font: 10pt \"SEBANG Gothic\";\n"
 "    color: #343a40;\n"
 "}")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -116,9 +116,9 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.Input_inputBox.setGeometry(QtCore.QRect(460, 790, 724, 30))
         self.Input_inputBox.setStyleSheet("QPlainTextEdit {\n"
 "    border-style: none;\n"
-"    font-size: 12pt;\n"
 "    color: #495057;\n"
 "}")
+        self.Input_inputBox.setFont(QtGui.QFont("SEBANG Gothic", 12))
         self.Input_inputBox.setPlainText("")
         self.Input_inputBox.setPlaceholderText("Text here...")
         self.Input_inputBox.setObjectName("Input_inputBox")
@@ -149,29 +149,31 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.Text_ProfileHeader.sizePolicy().hasHeightForWidth())
         self.Text_ProfileHeader.setSizePolicy(sizePolicy)
-        self.Text_ProfileHeader.setStyleSheet("font-size: 12pt;")
-        self.Text_ProfileHeader.setText("<html><head/><body><p><span style=\" font-size:12pt;\">Profile</span></p></body></html>")
+        self.Text_ProfileHeader.setFont(QtGui.QFont("SEBANG Gothic", 12))
+        self.Text_ProfileHeader.setText("<html><head/><body><p><span>Profile</span></p></body></html>")
         self.Text_ProfileHeader.setTextFormat(QtCore.Qt.AutoText)
         self.Text_ProfileHeader.setScaledContents(False)
         self.Text_ProfileHeader.setObjectName("Text_ProfileHeader")
         self.Text_MemberHeader = QtWidgets.QLabel(self.centralwidget)
         self.Text_MemberHeader.setGeometry(QtCore.QRect(76, 210, 271, 20))
         self.Text_MemberHeader.setMidLineWidth(0)
-        self.Text_MemberHeader.setText("<html><head/><body><p><span style=\" font-size:12pt;\">Members</span></p></body></html>")
+        self.Text_MemberHeader.setFont(QtGui.QFont("SEBANG Gothic", 12))
+        self.Text_MemberHeader.setText("<html><head/><body><p><span>Members</span></p></body></html>")
         self.Text_MemberHeader.setTextFormat(QtCore.Qt.AutoText)
         self.Text_MemberHeader.setScaledContents(False)
         self.Text_MemberHeader.setObjectName("Text_MemberHeader")
         self.Text_Exit = QtWidgets.QLabel(self.centralwidget)
         self.Text_Exit.setGeometry(QtCore.QRect(76, 795, 31, 20))
         self.Text_Exit.setMidLineWidth(0)
-        self.Text_Exit.setText("<html><head/><body><p><span style=\" font-size:12pt;\">Exit</span></p></body></html>")
+        self.Text_Exit.setFont(QtGui.QFont("SEBANG Gothic", 12))
+        self.Text_Exit.setText("<html><head/><body><p><span>Exit</span></p></body></html>")
         self.Text_Exit.setTextFormat(QtCore.Qt.AutoText)
         self.Text_Exit.setScaledContents(False)
         self.Text_Exit.setObjectName("Text_Exit")
         self.Text_ChatTarget = QtWidgets.QLabel(self.centralwidget)
         self.Text_ChatTarget.setGeometry(QtCore.QRect(456, 20, 151, 20))
-        self.Text_ChatTarget.setStyleSheet("font-size: 12pt;")
-        self.Text_ChatTarget.setText("<html><head/><body><p><span style=\" font-size:12pt;\">Chat : ALL</span></p></body></html>")
+        self.Text_ChatTarget.setFont(QtGui.QFont("SEBANG Gothic", 12))
+        self.Text_ChatTarget.setText("<html><head/><body><p><span>Chat : ALL</span></p></body></html>")
         self.Text_ChatTarget.setTextFormat(QtCore.Qt.AutoText)
         self.Text_ChatTarget.setScaledContents(False)
         self.Text_ChatTarget.setObjectName("Text_ChatTarget")
@@ -182,15 +184,15 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.Img_myProfile.setObjectName("Img_myProfile")
         self.Text_myName = QtWidgets.QLabel(self.centralwidget)
         self.Text_myName.setGeometry(QtCore.QRect(108, 100, 201, 20))
-        self.Text_myName.setStyleSheet("font-size: 12pt;\n"
-"font-weight: 700;")
+        self.Text_myName.setFont(QtGui.QFont("SEBANG Gothic Bold", 10))
         #초기 닉네임 설정 start
         self.Text_myName.setText(f"<html><head/><body><p>{self.nickname}</p></body></html>")
         #초기 닉네임 설정 end
         self.Text_myName.setObjectName("Text_myName")
         self.Text_myStatus = QtWidgets.QLabel(self.centralwidget)
         self.Text_myStatus.setGeometry(QtCore.QRect(126, 122, 161, 20))
-        self.Text_myStatus.setText("<html><head/><body><p><span style=\" font-size:9pt;\">ONLINE</span></p></body></html>")
+        self.Text_myStatus.setFont(QtGui.QFont("SEBANG Gothic", 9))
+        self.Text_myStatus.setText("<html><head/><body><p><span>ONLINE</span></p></body></html>")
         self.Text_myStatus.setObjectName("Text_myStatus")
         self.Img_MyStatus = QtWidgets.QLabel(self.centralwidget)
         self.Img_MyStatus.setGeometry(QtCore.QRect(108, 125, 12, 12))
@@ -389,7 +391,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
         self.Text_Chat = QtWidgets.QTextEdit(self.scrollAreaWidgetContents)
         self.Text_Chat.setReadOnly(True)
-
+        self.Text_Chat.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.Text_Chat.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.Text_Chat.setObjectName("Text_Chat")
         self.gridLayout.addWidget(self.Text_Chat, 0, 0, 1, 1)
