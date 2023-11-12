@@ -1,6 +1,6 @@
 from changeWord import *
 
-def whisper(recvMessage,sendTime,c_name,c_list,nickname):
+def whisper(recvMessage,sendTime,c_socket,c_name,c_list,nickname):
     recipient_name=recvMessage.split(' ')[1]
     print(f"{recipient_name}")
     whisper_message=' '.join(recvMessage.split(' ')[2:])
