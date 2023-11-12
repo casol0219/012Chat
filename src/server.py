@@ -3,6 +3,7 @@ from _thread import *
 from changeWord import *
 from whisper import *
 from p2pchat import *
+from p2pRequest import *
 
 #접속자 목록
 c_list = []
@@ -54,43 +55,31 @@ def groupChat(c_socket, addr):
                 c_name.append(nickname)
             #닉네임 변경 end
 
-            #귓속말 기능
-            #print(f"testrecvmessage : {recvMessage}")
-            elif recvMessage.startswith('/w'):
-                whisper(recvMessage)
+            #1:1 채팅중일때
+            elif nickname in c_connections:
+                p2pchat()
 
-            #1:1 대화 기능
-            elif recvMessage.startswith('/p'):
-                p2pchat(recvMessage)
-
-            #1:1 요청 받으면
-            elif c_socket in c_connections:
-                recipient_socket=c_connections[c_socket]
-
-                if recvMessage.lower()=='y':
-                    recipient_socket=c_connections[c_socket]
-                    c_socket.send(f"1:1 대화가 수락되었습니다.".encode())
-                    recipient_socket.send(f"1:1 대화가 수락되었습니다.".encode())
-                    
-                elif recvMessage.lower()=='n':
-                    c_socket.send(f"1:1 대화 요청이 거부되었습니다.".encode())
-                    recipient_socket.send(f"1:1 대화 요청이 거부되었습니다.".encode())
-                    del c_connections[c_socket]
-                    
-                else:
-                    recipient_socket.send(f"{nickname}: {recvMessage}".encode())
-
-            #일반 채팅
+            #1:1 채팅을 이용중이지 않을 때
             else:
-                #금칙어 처리
-                filtered_data = (changeWord(recvMessage).encode('utf-8')).decode('utf-8')
-                #오가는 메시지들 로깅
-                print(f"{nickname} - {recvMessage}  {sendTime}")
+                #귓속말 기능
+                if recvMessage.startswith('/w'):
+                    whisper(recvMessage,sendTime,c_name,c_list,nickname)
 
-                #자신 포함 모든 접속자에게 메시지 전송
-                for client in c_list:
-                    #발신자 정보, 시간, 금칙어 처리 메시지 보내기
-                    client.send(f'{nickname}**{sendTime}**{filtered_data}'.encode('utf-8'))
+                #1:1 대화 기능
+                elif recvMessage.startswith('/p'):
+                    p2pRequest(recvMessage)
+
+                #일반 채팅
+                else:
+                    #금칙어 처리
+                    filtered_data = (changeWord(recvMessage).encode('utf-8')).decode('utf-8')
+                    #로깅
+                    print(f"{nickname} - {recvMessage}  {sendTime}")
+
+                    #자신 포함 모든 접속자에게 메시지 전송
+                    for client in c_list:
+                        #발신자 정보, 시간, 금칙어 처리 메시지 보내기
+                        client.send(f'{nickname}**{sendTime}**{filtered_data}'.encode('utf-8'))
                     
         except ConnectionResetError as e:
             print(f">> {nickname} 님이 대화방을 나갔습니다.")
