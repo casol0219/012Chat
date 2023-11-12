@@ -11,6 +11,9 @@ c_list = []
 #접속자 닉네임 목록
 c_name = []
 
+#연결 대기중인 클라이언트들
+pending_conn={}
+
 #클라이언트들 간의 연결 저장
 c_connections={}
 
@@ -55,31 +58,22 @@ def groupChat(c_socket, addr):
                 c_name.append(nickname)
             #닉네임 변경 end
 
-            #1:1 채팅중일때
-            elif nickname in c_connections:
-                p2pchat()
 
-            #1:1 채팅을 이용중이지 않을 때
+            #귓속말 기능
+            elif recvMessage.startswith('/w'):
+                    whisper(recvMessage,sendTime,c_socket,c_name,c_list,nickname)
+
+            #일반 채팅
             else:
-                #귓속말 기능
-                if recvMessage.startswith('/w'):
-                    whisper(recvMessage,sendTime,c_name,c_list,nickname)
+                #금칙어 처리
+                filtered_data = (changeWord(recvMessage).encode('utf-8')).decode('utf-8')
+                #로깅
+                print(f"{nickname} - {recvMessage}  {sendTime}")
 
-                #1:1 대화 기능
-                elif recvMessage.startswith('/p'):
-                    p2pRequest(recvMessage)
-
-                #일반 채팅
-                else:
-                    #금칙어 처리
-                    filtered_data = (changeWord(recvMessage).encode('utf-8')).decode('utf-8')
-                    #로깅
-                    print(f"{nickname} - {recvMessage}  {sendTime}")
-
-                    #자신 포함 모든 접속자에게 메시지 전송
-                    for client in c_list:
-                        #발신자 정보, 시간, 금칙어 처리 메시지 보내기
-                        client.send(f'{nickname}**{sendTime}**{filtered_data}'.encode('utf-8'))
+                #자신 포함 모든 접속자에게 메시지 전송
+                for client in c_list:
+                    #발신자 정보, 시간, 금칙어 처리 메시지 보내기
+                    client.send(f'{nickname}**{sendTime}**{filtered_data}'.encode('utf-8'))
                     
         except ConnectionResetError as e:
             print(f">> {nickname} 님이 대화방을 나갔습니다.")
