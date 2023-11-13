@@ -3,16 +3,12 @@ from _thread import *
 from changeWord import *
 from whisper import *
 from p2pchat import *
-from p2pRequest import *
 
 #접속자 목록
 c_list = []
 
 #접속자 닉네임 목록
 c_name = []
-
-#연결 대기중인 클라이언트들
-pending_conn={}
 
 #클라이언트들 간의 연결 저장
 c_connections={}
@@ -31,6 +27,9 @@ def groupChat(c_socket, addr):
     c_name.append(nickname)
     #초기 닉네임 설정 end
     print(f">> {nickname} 님이 입장하셨습니다.")
+    user_update_data = "USERUPDATE::"+'|'.join(c_name)
+    for client in c_list:
+        client.send(user_update_data.encode('utf8'))
     
     while True:
         try:
@@ -58,16 +57,16 @@ def groupChat(c_socket, addr):
                 c_name.append(nickname)
             #닉네임 변경 end
 
-
             #귓속말 기능
+            #print(f"testrecvmessage : {recvMessage}")
             elif recvMessage.startswith('/w'):
-                    whisper(recvMessage,sendTime,c_socket,c_name,c_list,nickname)
+                whisper(recvMessage)
 
             #일반 채팅
             else:
                 #금칙어 처리
                 filtered_data = (changeWord(recvMessage).encode('utf-8')).decode('utf-8')
-                #로깅
+                #오가는 메시지들 로깅
                 print(f"{nickname} - {recvMessage}  {sendTime}")
 
                 #자신 포함 모든 접속자에게 메시지 전송
@@ -87,6 +86,9 @@ def groupChat(c_socket, addr):
         c_list.remove(c_socket)
         print('>> 접속자 목록을 갱신했습니다 - 접속자 수 : ', len(c_list))
         print(c_list)
+        for client in c_list:
+            user_update_data = "USERUPDATE::"+'|'.join(c_name)
+            client.send(user_update_data.encode('utf8'))
         
     c_socket.close()
 

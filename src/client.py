@@ -1,5 +1,6 @@
 import socket
 import time
+from PyQt5 import QtCore, QtGui, QtWidgets
 from _thread import *
 
 #서버 데이터 받기
@@ -18,6 +19,11 @@ def receive(c_socket, window, callback):
             elif decoded_data == "NICKNAMECHANGE::TRUE":
                 print("성공")
                 change_nick(window,0)
+            print(decoded_data)
+            if decoded_data.split('::')[0] == "USERUPDATE":
+                memlist = decoded_data.split('::')[1].split('|')
+                print(memlist)
+                update_memlist(window,memlist)
 
             display_text = ""
             if '**' in decoded_data:
@@ -59,6 +65,21 @@ def change_nick(window,flag):
         window.Text_myName.setText(window.nickname)
     else:
         window.nickname = tmp
+
+def update_memlist(window,memlist):
+    print(f"updating memlist")
+    window.memberTable.setRowCount(len(memlist))
+    for i,member in enumerate(memlist):
+        item=QtWidgets.QTableWidgetItem()
+        item.setText(str(i))
+        window.memberTable.setVerticalHeaderItem(i,item)
+
+        item=QtWidgets.QTableWidgetItem()
+        item.setText(member)
+        window.memberTable.setItem(i,0,item)
+        item=QtWidgets.QTableWidgetItem()
+        item.setText("Online")
+        window.memberTable.setItem(i,1,item)
 
 #메시지, 입력 시간 보내기
 def send_message(message):
