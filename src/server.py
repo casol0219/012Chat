@@ -42,7 +42,7 @@ def groupChat(c_socket, addr):
             elif "NICKNAMECHANGE" == data.split("::")[0]:
                 tmp_nick = data.split("::")[1]
                 
-                if tmp_nick in c_name and tmp_nick == nickname:
+                if tmp_nick in c_name and tmp_nick != nickname:
                     c_socket.send("NICKNAMECHANGE::FALSE".encode('utf8'))
                     c_name.remove(nickname)
                     

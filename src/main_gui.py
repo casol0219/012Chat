@@ -10,7 +10,7 @@
 from os import environ
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt, QObject, pyqtSlot
-import dialog_gui1, dialog_exit, dialog_private, widget_emoji
+import dialog_gui1, dialog_exit, widget_emoji
 from client import *
 import sys
 
@@ -183,7 +183,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.Img_myProfile.setObjectName("Img_myProfile")
         self.Text_myName = QtWidgets.QLabel(self.centralwidget)
         self.Text_myName.setGeometry(QtCore.QRect(108, 100, 201, 20))
-        self.Text_myName.setFont(QtGui.QFont("SEBANG Gothic Bold", 10))
+        self.Text_myName.setFont(QtGui.QFont("SEBANG Gothic Bold", 12))
         #초기 닉네임 설정 start
         self.Text_myName.setText(f"<html><head/><body><p>{self.nickname}</p></body></html>")
         #초기 닉네임 설정 end
@@ -209,12 +209,10 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         #닉네임 편집버튼 함수연결 start
         self.Btn_edit.clicked.connect(self.executeChangeNickname)
         #닉네임 편집버튼 함수연결 end
-        self.memberTable = QtWidgets.QTableWidget(self.centralwidget)
+        self.memberTable = QtWidgets.QListWidget(self.centralwidget)
         self.memberTable.setGeometry(QtCore.QRect(44, 262, 311, 498))
-        self.memberTable.setStyleSheet("* {\n"
-"    font: 9pt \"SEBANG Gothic\";\n"
-"}\n"
-"QTableWidget {\n"
+        self.memberTable.setFont(QtGui.QFont("SEBANG Gothic", 11))
+        self.memberTable.setStyleSheet("QListWidget {\n"
 "    border-style: none;\n"
 "}\n"
 "QScrollBar::sub-page:vertical {\n"
@@ -246,31 +244,10 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 "    subcontrol-origin: margin;\n"
 "}\n"
 "")
+        self.memberTable.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.memberTable.setVerticalScrollMode(QtWidgets.QAbstractItemView.ScrollPerItem)
-        self.memberTable.setShowGrid(False)
-        self.memberTable.setRowCount(1)
         self.memberTable.setObjectName("memberTable")
-        self.memberTable.setColumnCount(2)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Name")
-        item.setTextAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignVCenter)
-        font = QtGui.QFont()
-        font.setFamily("세방고딕 Regular")
-        font.setPointSize(9)
-        item.setFont(font)
-        self.memberTable.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Status")
-        item.setTextAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignVCenter)
-        font = QtGui.QFont()
-        font.setFamily("SEBANG Gothic")
-        self.memberTable.setHorizontalHeaderItem(1, item)
-        item.setFont(font)
 
-        self.memberTable.horizontalHeader().setDefaultSectionSize(140)
-        self.memberTable.horizontalHeader().setSortIndicatorShown(False)
-        self.memberTable.horizontalHeader().setStretchLastSection(True)
-        self.memberTable.verticalHeader().setVisible(False)
         self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
         self.scrollArea.setGeometry(QtCore.QRect(390, 56, 890, 716))
         self.scrollArea.setMinimumSize(QtCore.QSize(890, 716))
@@ -321,7 +298,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
         self.Text_Chat = QtWidgets.QTextEdit(self.scrollAreaWidgetContents)
         self.Text_Chat.setReadOnly(True)
-        self.Text_Chat.setFont(QtGui.QFont("SEBANG Gothic", 10))
+        self.Text_Chat.setFont(QtGui.QFont("SEBANG Gothic", 11))
         self.Text_Chat.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.Text_Chat.setObjectName("Text_Chat")
         self.gridLayout.addWidget(self.Text_Chat, 0, 0, 1, 1)
@@ -413,6 +390,7 @@ import resource_rc
 
 if __name__ == "__main__":
     import sys
+    suppress_qt_warnings()
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
