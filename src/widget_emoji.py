@@ -19,6 +19,7 @@ class Ui_Form(QtWidgets.QDialog):
         self.fontDB.addApplicationFont("../resource/SEBANG Gothic.ttf")
         self.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.setupUi()
+        self.clickFrodo()
 
     #서버로 이모티콘 이름 전송
     def sendEmoji(self, name):
@@ -329,6 +330,7 @@ class Ui_Form(QtWidgets.QDialog):
         self.connectButton(self.Btn_1003, '1003.png')
         self.connectButton(self.Btn_1004, '1004.png')
         self.connectButton(self.Btn_1005, '1005.png')
+        self.connectButton(self.Btn_1006, '1006.png')
 
     def clickNeo(self):
         self.Btn_tabFrodo.setChecked(False)
