@@ -2,16 +2,12 @@ import socket
 from _thread import *
 from changeWord import *
 from whisper import *
-from p2pchat import *
 
 #접속자 목록
 c_list = []
 
 #접속자 닉네임 목록
 c_name = []
-
-#클라이언트들 간의 연결 저장
-c_connections={}
 
 
 def groupChat(c_socket, addr):
@@ -60,7 +56,7 @@ def groupChat(c_socket, addr):
             #귓속말 기능
             #print(f"testrecvmessage : {recvMessage}")
             elif recvMessage.startswith('/w'):
-                whisper(recvMessage)
+                whisper(recvMessage,sendTime,c_name,c_list,nickname,c_socket)
 
             #일반 채팅
             else:
