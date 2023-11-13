@@ -9,9 +9,8 @@
 
 from os import environ
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QObject, pyqtSlot
 import dialog_gui1, dialog_exit, dialog_private, widget_emoji
-from server import *
 from client import *
 import sys
 
@@ -57,12 +56,12 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.receivedData.connect(self.print_data)
     
     def initUI(self):
-        connect_to_server(self, update_ui_with_data)
+        connect_to_server(self,update_ui_with_data)
 
     # 메인 윈도우가 닫힐 때 호출되는 메서드
     def closeEvent(self):
         close_connection()
-
+    
     #__init__ end
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -249,27 +248,9 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 "")
         self.memberTable.setVerticalScrollMode(QtWidgets.QAbstractItemView.ScrollPerItem)
         self.memberTable.setShowGrid(False)
-        self.memberTable.setRowCount(22)
+        self.memberTable.setRowCount(1)
         self.memberTable.setObjectName("memberTable")
         self.memberTable.setColumnCount(2)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("1")
-        self.memberTable.setVerticalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("2")
-        self.memberTable.setVerticalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("새 열")
-        self.memberTable.setVerticalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("3")
-        self.memberTable.setVerticalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("4")
-        self.memberTable.setVerticalHeaderItem(4, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("6")
-        self.memberTable.setVerticalHeaderItem(5, item)
         item = QtWidgets.QTableWidgetItem()
         item.setText("Name")
         item.setTextAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignVCenter)
@@ -283,60 +264,9 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         item.setTextAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignVCenter)
         font = QtGui.QFont()
         font.setFamily("SEBANG Gothic")
-        item.setFont(font)
         self.memberTable.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Noname123")
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.memberTable.setItem(0, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Online")
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.memberTable.setItem(0, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Noname456")
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.memberTable.setItem(1, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Away")
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.memberTable.setItem(1, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Noname789")
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.memberTable.setItem(2, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Online")
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.memberTable.setItem(2, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Noname1")
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.memberTable.setItem(3, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Online")
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.memberTable.setItem(3, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Noname2")
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.memberTable.setItem(4, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Away")
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.memberTable.setItem(4, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Noname3")
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.memberTable.setItem(5, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        item.setText("Away")
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.memberTable.setItem(5, 1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.memberTable.setItem(6, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.memberTable.setItem(7, 0, item)
+        item.setFont(font)
+
         self.memberTable.horizontalHeader().setDefaultSectionSize(140)
         self.memberTable.horizontalHeader().setSortIndicatorShown(False)
         self.memberTable.horizontalHeader().setStretchLastSection(True)
@@ -457,7 +387,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
     def executeChangeNickname(self):
         changeDialog = dialog_gui1.Ui_Dialog()
         if changeDialog.exec_(): #닉네임변경 팝업 열기 & yes 클릭 시
-            tmp_nickname = changeDialog.Input_text.text()
+            tmp_nickname = changeDialog.Input_text.text().replace('|','')
             changing_nickname(tmp_nickname)
         else: #no 클릭 시
             if not self.nickname: #첫 팝업:닉네임 설정(취소선택시)
@@ -470,20 +400,16 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         if exitDialog.exec_():
             QtWidgets.QApplication.quit()
 
-    #1:1 대화창
-    def executePrivateChat(self):
-        privateDialog = dialog_private.Ui_Dialog()
-        privateDialog.exec_()
-
     def openEmoji(self):
         if self.emojiWidget is None:
             self.emojiWidget = widget_emoji.Ui_Form()
         self.emojiWidget.show()
 
-import resource_rc
-
+    #접속자 목록 업데이트
 def update_ui_with_data(data):
     ui.receivedData.emit(data)
+
+import resource_rc
 
 if __name__ == "__main__":
     import sys
