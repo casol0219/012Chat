@@ -21,6 +21,7 @@ def suppress_qt_warnings():
 class Ui_Dialog_Exit(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
+        suppress_qt_warnings()
         self.fontDB = QtGui.QFontDatabase()
         self.fontDB.addApplicationFont("../resource/SEBANG Gothic.ttf")
         self.setFont(QtGui.QFont("SEBANG Gothic", 10))

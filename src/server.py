@@ -2,7 +2,6 @@ import socket
 from _thread import *
 from changeWord import *
 from whisper import *
-from p2pchat import *
 
 #접속자 목록
 c_list = []
@@ -46,7 +45,7 @@ def groupChat(c_socket, addr):
             elif "NICKNAMECHANGE" == data.split("::")[0]:
                 tmp_nick = data.split("::")[1]
                 
-                if tmp_nick in c_name and tmp_nick == nickname:
+                if tmp_nick in c_name and tmp_nick != nickname:
                     c_socket.send("NICKNAMECHANGE::FALSE".encode('utf8'))
                     c_name.remove(nickname)
                     

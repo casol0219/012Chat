@@ -38,7 +38,8 @@ def receive(c_socket, window, callback):
 # 서버 연결
 def connect_to_server(window, callback):
     global c_socket
-    HOST = "127.0.0.1"
+    #HOST = "127.0.0.1"
+    HOST = "34.22.68.230"
     PORT = 12346
 
     c_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -68,18 +69,11 @@ def change_nick(window,flag):
 
 def update_memlist(window,memlist):
     print(f"updating memlist")
-    window.memberTable.setRowCount(len(memlist))
-    for i,member in enumerate(memlist):
-        item=QtWidgets.QTableWidgetItem()
-        item.setText(str(i))
-        window.memberTable.setVerticalHeaderItem(i,item)
-
-        item=QtWidgets.QTableWidgetItem()
+    window.memberTable.clear()
+    for member in memlist:
+        item=QtWidgets.QListWidgetItem()
         item.setText(member)
-        window.memberTable.setItem(i,0,item)
-        item=QtWidgets.QTableWidgetItem()
-        item.setText("Online")
-        window.memberTable.setItem(i,1,item)
+        window.memberTable.addItem(item)
 
 #메시지, 입력 시간 보내기
 def send_message(message):
