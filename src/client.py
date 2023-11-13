@@ -11,6 +11,7 @@ def receive(c_socket, window, callback):
             recvData = c_socket.recv(1024)
             if not recvData:
                 print("연결이 종료되었습니다.")
+                window.close()
                 break
             decoded_data = recvData.decode('utf-8')
             if decoded_data == "NICKNAMECHANGE::FALSE":
@@ -33,13 +34,14 @@ def receive(c_socket, window, callback):
 
         except Exception as e:
             print(f"예외가 발생했습니다: {e}")
+            window.close()
             break
 
 # 서버 연결
 def connect_to_server(window, callback):
     global c_socket
-    #HOST = "127.0.0.1"
-    HOST = "34.22.68.230"
+    HOST = "127.0.0.1"
+    #HOST = "34.22.68.230"
     PORT = 12346
 
     c_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
