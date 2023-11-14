@@ -31,6 +31,11 @@ def receive(c_socket, window, callback):
                 nickname, datetime, data = decoded_data.split('**', 2)
                 display_text = f"{nickname}  {datetime}\n{data}"
                 callback(display_text)
+            
+            elif ':::::' in decoded_data:
+                data=decoded_data.split(':::::')[1]
+                display_text=f"\n{data}"
+                callback(display_text)
 
         except Exception as e:
             print(f"예외가 발생했습니다: {e}")
