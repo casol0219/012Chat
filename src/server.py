@@ -58,9 +58,12 @@ def groupChat(c_socket, addr):
             #닉네임 변경 end
 
             #귓속말 기능
-            #print(f"testrecvmessage : {recvMessage}")
-            elif recvMessage.startswith('/w'):
+            elif recvMessage.startswith('/w '):
                 whisper(recvMessage,sendTime,c_name,c_list,nickname,c_socket)
+
+            #존재하지 않는 명령어 입력했을 때
+            elif recvMessage.startswith('/'):
+                client.send(f"입력하신 명령어가 존재하지 않습니다.\n'/w 상대방이름 메시지' 를 입력하여 귓속말을 보낼 수 있습니다.".encode('utf-8'))
 
             #일반 채팅
             else:
