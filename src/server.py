@@ -26,6 +26,7 @@ def groupChat(c_socket, addr):
     user_update_data = "USERUPDATE::"+'|'.join(c_name)
     for client in c_list:
         client.send(user_update_data.encode('utf8'))
+        client.send(f":::::[ {nickname} 님이 입장하셨습니다. ]".encode('utf-8'))
     
     while True:
         try:
@@ -63,7 +64,7 @@ def groupChat(c_socket, addr):
 
             #존재하지 않는 명령어 입력했을 때
             elif recvMessage.startswith('/'):
-                client.send(f"입력하신 명령어가 존재하지 않습니다.\n'/w 상대방이름 메시지' 를 입력하여 귓속말을 보낼 수 있습니다.".encode('utf-8'))
+                c_socket.send(f":::::입력하신 명령어가 존재하지 않습니다.\n'/w 상대방이름 메시지' 를 입력하여 귓속말을 보낼 수 있습니다.".encode('utf-8'))
 
             #일반 채팅
             else:
@@ -81,7 +82,7 @@ def groupChat(c_socket, addr):
             print(f">> {nickname} 님이 대화방을 나갔습니다.")
             for client in c_list:
                 if client != c_socket:
-                    client.send(f">> {nickname} 님이 대화방을 나갔습니다.".encode('utf-8'))
+                    client.send(f":::::[ {nickname} 님이 대화방을 나갔습니다. ]".encode('utf-8'))
             break
                             
     if c_socket in c_list:
