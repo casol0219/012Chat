@@ -34,6 +34,7 @@ def groupChat(c_socket, addr):
             if "NICKNAMECHANGE" != data.split("::")[0]:
                 if '**' in data:
                     sendTime, recvMessage = data.split('**', 1)    #받은 메시지, 보낸 시간 분리
+                    msg_bytes=recvMessage.encode('utf-8')
                 
             if not data:
                 print(f">> {nickname} 님이 대화방을 나갔습니다.")
@@ -59,7 +60,7 @@ def groupChat(c_socket, addr):
             #닉네임 변경 end
 
             #귓속말 기능
-            elif recvMessage.startswith('/w '):
+            elif msg_bytes.startswith(b'\x2F\x77\x20'):
                 whisper(recvMessage,sendTime,c_name,c_list,nickname,c_socket)
 
             #존재하지 않는 명령어 입력했을 때
