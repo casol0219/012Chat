@@ -183,7 +183,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.Img_myProfile.setObjectName("Img_myProfile")
         self.Text_myName = QtWidgets.QLabel(self.centralwidget)
         self.Text_myName.setGeometry(QtCore.QRect(108, 100, 201, 20))
-        self.Text_myName.setFont(QtGui.QFont("SEBANG Gothic Bold", 12))
+        self.Text_myName.setFont(QtGui.QFont("SEBANG Gothic", 12))
         #초기 닉네임 설정 start
         self.Text_myName.setText(f"<html><head/><body><p>{self.nickname}</p></body></html>")
         #초기 닉네임 설정 end
