@@ -7,7 +7,6 @@
     <file>ChatFrame2.png</file>
   </qresource>
   <qresource prefix="font">
-    <file>SEBANG Gothic Bold.ttf</file>
     <file>SEBANG Gothic.ttf</file>
   </qresource>
   <qresource prefix="emoji">

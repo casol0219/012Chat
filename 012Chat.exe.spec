@@ -16,7 +16,7 @@ a = Analysis(
     excludes=[],
     noarchive=False,
 )
-pyz = PYZ(a.pure)
+pyz = PYZ(a.pure,a.zipped_data,cipher=block_chipher)
 
 exe = EXE(
     pyz,
@@ -24,7 +24,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    icon='C:\\Users\\Saenozu\\Documents\\Assignment\\컴네\\TP\\012Chat\\resource\\012Chat.ico',
+    icon='resource\\012Chat.ico',
     name='012Chat.exe',
     debug=False,
     bootloader_ignore_signals=False,

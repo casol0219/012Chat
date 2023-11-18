@@ -11,14 +11,29 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from server import *
 from client import *
+from os import environ,fspath
+
+def suppress_qt_warnings():
+    environ["QT_DEVICE_PIXEL_RATIO"] = "0"
+    environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
+    environ["QT_SCREEN_SCALE_FACTORS"] = "1"
+    environ["QT_SCALE_FACTOR"] = "1"
+
+def load_fonts_from_dir(directory):
+    families = set()
+    for fi in QtCore.QDir(directory).entryInfoList(["*.ttf", "*.woff", "*.woff2"]):
+        _id = QtGui.QFontDatabase.addApplicationFont(fi.absoluteFilePath())
+        families |= set(QtGui.QFontDatabase.applicationFontFamilies(_id))
+    return families
+
 
 class Ui_Form(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
         self.fontDB = QtGui.QFontDatabase()
-        fontPath = '\\'.join(__file__.split('\\')[:-2])+'\\resource\\SEBANG Gothic.ttf'
-        self.fontDB.addApplicationFont(fontPath)
-        self.setFont(QtGui.QFont("SEBANG Gothic", 10))
+        font_dir = ":/font"
+        self.families = list(load_fonts_from_dir(fspath(font_dir)))
+        self.setFont(QtGui.QFont(self.families[0], 10))
         self.setupUi()
         self.clickFrodo()
 
@@ -48,7 +63,7 @@ class Ui_Form(QtWidgets.QDialog):
         self.Text_emoji = QtWidgets.QLabel(self)
         self.Text_emoji.setGeometry(QtCore.QRect(48, 19, 56, 19))
         self.Text_emoji.setStyleSheet("color: #343A40;")
-        self.Text_emoji.setFont(QtGui.QFont("SEBANG Gothic", 11))
+        self.Text_emoji.setFont(QtGui.QFont(self.families[0], 11))
         self.Text_emoji.setObjectName("Text_emoji")
         self.Widget_emojiTab = QtWidgets.QWidget(self)
         self.Widget_emojiTab.setGeometry(QtCore.QRect(16, 48, 432, 32))
