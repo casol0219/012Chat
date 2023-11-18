@@ -23,7 +23,8 @@ class Ui_Dialog_Exit(QtWidgets.QDialog):
         super().__init__()
         suppress_qt_warnings()
         self.fontDB = QtGui.QFontDatabase()
-        self.fontDB.addApplicationFont("../resource/SEBANG Gothic.ttf")
+        fontPath = '\\'.join(__file__.split('\\')[:-2])+'\\resource\\SEBANG Gothic.ttf'
+        self.fontDB.addApplicationFont(fontPath)
         self.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.setupUi()
 

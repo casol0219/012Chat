@@ -44,8 +44,8 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.initUI()
         self.port = my_portNum()
         self.fontDB = QtGui.QFontDatabase()
-        self.fontDB.addApplicationFont("../resource/SEBANG Gothic.ttf")
-        self.fontDB.addApplicationFont("../resource/SEBANG Gothic Bold.ttf")
+        fontPath = '\\'.join(__file__.split('\\')[:-2])+'\\resource\\SEBANG Gothic.ttf'
+        self.fontDB.addApplicationFont(fontPath)
         self.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.nickname = None
         self.status = "Online"
