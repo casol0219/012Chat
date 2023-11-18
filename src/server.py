@@ -2,6 +2,7 @@ import socket
 from _thread import *
 from changeWord import *
 from whisper import *
+import time
 
 #접속자 목록
 c_list = []
@@ -9,31 +10,35 @@ c_list = []
 #접속자 닉네임 목록
 c_name = []
 
-
+#nicknamechange: \x80
 def groupChat(c_socket, addr):
     #초기 닉네임 설정 start
     #닉네임설정 데이터 형식: NICKNAMECHANGE::닉네임
-    nickname = c_socket.recv(1024).decode('utf8').split("::")[-1]
+    nickname = c_socket.recv(1024).split(b'\x80\x63\x6e')[1].decode('utf-8')
     #닉네임 중복 시 닉네임 뒤에 포트번호 붙임
     if nickname in c_name:
-        c_socket.send("NICKNAMECHANGE::FALSE".encode('utf8'))
-        nickname = c_socket.recv(1024).decode('utf8').split("::")[-1]
+        c_socket.send(b'\x80\x46')
+        nickname = c_socket.recv(1024).split(b'\x80\x63\x6e')[1].decode('utf-8')
     else:
-        c_socket.send("NICKNAMECHANGE::TRUE".encode('utf8'))
+        c_socket.send(b'\x80\x54')
     c_name.append(nickname)
     #초기 닉네임 설정 end
     print(f">> {nickname} 님이 입장하셨습니다.")
-    user_update_data = "USERUPDATE::"+'|'.join(c_name)
+    b_name = [ x.encode('utf-8') for x in c_name ]
+    user_update_data = b'\x81'+b'\x81'.join(b_name)
     for client in c_list:
-        client.send(user_update_data.encode('utf8'))
+        client.send(user_update_data)
+        time.sleep(0.5)
         client.send(f":::::[ {nickname} 님이 입장하셨습니다. ]".encode('utf-8'))
     
+    bytes_header = (b'\x80', b'\x81')
+
     while True:
         try:
-            data = c_socket.recv(1024).decode('utf-8')
-            if "NICKNAMECHANGE" != data.split("::")[0]:
-                if '**' in data:
-                    sendTime, recvMessage = data.split('**', 1)    #받은 메시지, 보낸 시간 분리
+            data = c_socket.recv(1024)
+            if not data.startswith(bytes_header):
+                if '**'.encode('utf-8') in data:
+                    sendTime, recvMessage = data.decode('utf-8').split('**', 1)    #받은 메시지, 보낸 시간 분리
                     msg_bytes=recvMessage.encode('utf-8')
                 
             if not data:
@@ -41,22 +46,23 @@ def groupChat(c_socket, addr):
                 break
             
             #닉네임 변경 start
-            elif "NICKNAMECHANGE" == data.split("::")[0]:
-                tmp_nick = data.split("::")[1]
+            elif data.startswith(b"\x80\x63\x6e"):
+                tmp_nick = data.split(b"\x80\x63\x6e")[1].decode('utf-8')
                 
                 if tmp_nick in c_name and tmp_nick != nickname:
-                    c_socket.send("NICKNAMECHANGE::FALSE".encode('utf8'))
+                    c_socket.send(b'\x80\x46')
                     c_name.remove(nickname)
                     
-                    nickname = c_socket.recv(1024).decode('utf8').split("::")[-1]
+                    nickname = c_socket.recv(1024).split(b"\x80\x63\x6e")[1].decode('utf-8')
                 else:
-                    c_socket.send("NICKNAMECHANGE::TRUE".encode('utf8'))
+                    c_socket.send(b'\x80\x54')
                     c_name.remove(nickname)
                     nickname = tmp_nick
                 c_name.append(nickname)
-                user_update_data = "USERUPDATE::"+'|'.join(c_name)
+                b_name = [ x.encode('utf-8') for x in c_name ]
+                user_update_data = b"\x81"+b'\x81'.join(b_name)
                 for client in c_list:
-                    client.send(user_update_data.encode('utf8'))
+                    client.send(b'\x81'+user_update_data)
             #닉네임 변경 end
 
             #귓속말 기능
@@ -91,9 +97,10 @@ def groupChat(c_socket, addr):
         c_list.remove(c_socket)
         print('>> 접속자 목록을 갱신했습니다 - 접속자 수 : ', len(c_list))
         print(c_list)
+        b_name = [ x.encode('utf-8') for x in c_name ]
+        user_update_data = b'\x81'+b'\x81'.join(b_name)
         for client in c_list:
-            user_update_data = "USERUPDATE::"+'|'.join(c_name)
-            client.send(user_update_data.encode('utf8'))
+            client.send(user_update_data)
         
     c_socket.close()
 
