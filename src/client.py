@@ -4,6 +4,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from _thread import *
 
 #서버 데이터 받기
+#닉네임 변경: \x80
+#   성공: \x80\x46
+#   실패: \x80\54
+#사용자목록갱신: \x81
 def receive(c_socket, window, callback):
     global nickname, datetime
     while True:
@@ -13,18 +17,21 @@ def receive(c_socket, window, callback):
                 print("연결이 종료되었습니다.")
                 window.close()
                 break
-            decoded_data = recvData.decode('utf-8')
-            if decoded_data == "NICKNAMECHANGE::FALSE":
+            if decoded_data.startswith(b"\x80\x46"):
                 print("실패")
                 change_nick(window,1)
-            elif decoded_data == "NICKNAMECHANGE::TRUE":
+            elif decoded_data.startswith(b"\x80\x54"):
                 print("성공")
                 change_nick(window,0)
-            print(decoded_data)
-            if decoded_data.split('::')[0] == "USERUPDATE":
-                memlist = decoded_data.split('::')[1].split('|')
-                print(memlist)
+            elif decoded_data.startswith(b'\x81'):
+                memlist = decoded_data.split(b'\x81')[1:]
+                memlist = [ x.decode('utf-8') for x in memlist ]
                 update_memlist(window,memlist)
+            else:
+                decoded_data = recvData.decode('utf-8')
+            
+            print(decoded_data)
+            
 
             display_text = ""
             if '**' in decoded_data:
@@ -59,14 +66,14 @@ def my_portNum():
 def changing_nickname(new):
     global tmp
     tmp = new
-    c_socket.send(("NICKNAMECHANGE::"+tmp).encode('utf8')) #행동+닉네임
+    c_socket.send(b"\x80\x63\x6e"+tmp.encode('utf8')) #행동+닉네임
 
 def change_nick(window,flag):
     global tmp
     print(tmp)
     if flag:
         tmp += window.port
-        c_socket.send(("NICKNAMECHANGE::"+tmp).encode('utf8'))
+        c_socket.send(b"\x80\x63\x6e"+tmp.encode('utf8'))
     if window.Text_myName:
         window.nickname = tmp
         window.Text_myName.setText(window.nickname)

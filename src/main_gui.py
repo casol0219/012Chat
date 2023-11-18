@@ -371,7 +371,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
     def executeChangeNickname(self):
         changeDialog = dialog_gui1.Ui_Dialog()
         if changeDialog.exec_(): #닉네임변경 팝업 열기 & yes 클릭 시
-            tmp_nickname = changeDialog.Input_text.text().replace('|','')
+            tmp_nickname = changeDialog.Input_text.text()
             changing_nickname(tmp_nickname)
         else: #no 클릭 시
             if not self.nickname: #첫 팝업:닉네임 설정(취소선택시)
