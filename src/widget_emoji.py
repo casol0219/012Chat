@@ -16,7 +16,8 @@ class Ui_Form(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
         self.fontDB = QtGui.QFontDatabase()
-        self.fontDB.addApplicationFont("../resource/SEBANG Gothic.ttf")
+        fontPath = '\\'.join(__file__.split('\\')[:-2])+'\\resource\\SEBANG Gothic.ttf'
+        self.fontDB.addApplicationFont(fontPath)
         self.setFont(QtGui.QFont("SEBANG Gothic", 10))
         self.setupUi()
         self.clickFrodo()
