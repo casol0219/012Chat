@@ -6,7 +6,7 @@ from _thread import *
 #서버 데이터 받기
 #닉네임 변경: \x80
 #   성공: \x80\x46
-#   실패: \x80\54
+#   실패: \x80\x54
 #사용자목록갱신: \x81
 def receive(c_socket, window, callback):
     global nickname, datetime
@@ -30,19 +30,19 @@ def receive(c_socket, window, callback):
             else:
                 decoded_data = recvData.decode('utf-8')
             
-            print(decoded_data)
+                #print(decoded_data)
             
 
-            display_text = ""
-            if '**' in decoded_data:
-                nickname, datetime, data = decoded_data.split('**', 2)
-                display_text = f"{nickname}  {datetime}\n{data}"
-                callback(display_text)
-            
-            elif ':::::' in decoded_data:
-                data=decoded_data.split(':::::')[1]
-                display_text=f"\n{data}"
-                callback(display_text)
+                display_text = ""
+                if '**' in decoded_data:
+                    nickname, datetime, data = decoded_data.split('**', 2)
+                    display_text = f"{nickname}  {datetime}\n{data}"
+                    callback(display_text)
+                
+                elif ':::::' in decoded_data:
+                    data=decoded_data.split(':::::')[1]
+                    display_text=f"\n{data}"
+                    callback(display_text)
 
         except Exception as e:
             print(f"예외가 발생했습니다: {e}")
