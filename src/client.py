@@ -17,14 +17,14 @@ def receive(c_socket, window, callback):
                 print("연결이 종료되었습니다.")
                 window.close()
                 break
-            if decoded_data.startswith(b"\x80\x46"):
+            if recvData.startswith(b"\x80\x46"):
                 print("실패")
                 change_nick(window,1)
-            elif decoded_data.startswith(b"\x80\x54"):
+            elif recvData.startswith(b"\x80\x54"):
                 print("성공")
                 change_nick(window,0)
-            elif decoded_data.startswith(b'\x81'):
-                memlist = decoded_data.split(b'\x81')[1:]
+            elif recvData.startswith(b'\x81'):
+                memlist = recvData.split(b'\x81')[1:]
                 memlist = [ x.decode('utf-8') for x in memlist ]
                 update_memlist(window,memlist)
             else:
