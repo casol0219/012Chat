@@ -37,7 +37,7 @@ def groupChat(c_socket, addr):
         try:
             data = c_socket.recv(1024)
             if not data.startswith(bytes_header):
-                if '**' in data:
+                if '**'.encode('utf-8') in data:
                     sendTime, recvMessage = data.decode('utf-8').split('**', 1)    #받은 메시지, 보낸 시간 분리
                     msg_bytes=recvMessage.encode('utf-8')
                 
