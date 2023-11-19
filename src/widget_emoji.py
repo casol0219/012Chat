@@ -39,7 +39,9 @@ class Ui_Form(QtWidgets.QDialog):
 
     #서버로 이모티콘 이름 전송
     def sendEmoji(self, name):
-        send_message(name)
+        emoji_byte = '\x65\x6D\x6F\x6A\x69'
+        send_message(emoji_byte, name)
+        self.close()    #창 닫기
 
     def disconnectButtonSignals(self, button):
         try:

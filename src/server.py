@@ -38,8 +38,8 @@ def groupChat(c_socket, addr):
             data = c_socket.recv(1024)
             if not data.startswith(bytes_header):
                 if '**'.encode('utf-8') in data:
-                    sendTime, recvMessage = data.decode('utf-8').split('**', 1)    #받은 메시지, 보낸 시간 분리
-                    msg_bytes=recvMessage.encode('utf-8')
+                    sendTime, recvMessage, check_by = data.decode('utf-8').split('**', 2)
+                    msg_bytes = recvMessage.encode('utf-8')
                 
             if not data:
                 print(f">> {nickname} 님이 대화방을 나갔습니다.")
@@ -75,16 +75,28 @@ def groupChat(c_socket, addr):
 
             #일반 채팅
             else:
-                #금칙어 처리
-                filtered_data = (changeWord(recvMessage).encode('utf-8')).decode('utf-8')
-                #오가는 메시지들 로깅
-                print(f"{nickname} - {recvMessage}  {sendTime}")
+                #채팅
+                if check_by.startswith('\x63\x68\x61\x74'):
+                    #금칙어 처리
+                    filtered_data = (changeWord(recvMessage).encode('utf-8')).decode('utf-8')
+                    #오가는 메시지들 로깅
+                    print(f"{nickname} - {recvMessage}  {sendTime}")
 
-                #자신 포함 모든 접속자에게 메시지 전송
-                for client in c_list:
-                    #발신자 정보, 시간, 금칙어 처리 메시지 보내기
-                    client.send(f'{nickname}**{sendTime}**{filtered_data}'.encode('utf-8'))
-                    
+                    #자신 포함 모든 접속자에게 메시지 전송
+                    for client in c_list:
+                        #발신자 정보, 시간, 금칙어 처리 메시지 보내기
+                        client.send(f'{nickname}**{sendTime}**{filtered_data}**{check_by}'.encode('utf-8'))
+
+                #이모티콘     
+                elif check_by.startswith('\x65\x6D\x6F\x6A\x69'):
+                    #오가는 메시지들 로깅
+                    print(f"{nickname} - {recvMessage}  {sendTime}")
+
+                    #자신 포함 모든 접속자에게 메시지 전송
+                    for client in c_list:
+                        #발신자 정보, 시간, 금칙어 처리 메시지 보내기
+                        client.send(f'{nickname}**{sendTime}**{recvMessage}**{check_by}'.encode('utf-8'))
+                                   
         except ConnectionResetError as e:
             print(f">> {nickname} 님이 대화방을 나갔습니다.")
             for client in c_list:
