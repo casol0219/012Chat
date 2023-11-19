@@ -49,7 +49,7 @@ def receive(c_socket, window, callback):
 # 서버 연결
 def connect_to_server(window, callback):
     global c_socket
-    HOST = "127.0.0.1"
+    HOST = "34.22.68.230"
     PORT = 12346
 
     c_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
