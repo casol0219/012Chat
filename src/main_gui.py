@@ -342,30 +342,46 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
     #서버로부터 받은 데이터 대화창에 출력
     def print_data(self, display_text):
-        Data = display_text.split('\n')[1]
-        emogi_data = display_text.split('\n')[0]
-    
-        #이모티콘 출력
-        if '.png' in Data:
-            emoji_path = f":/emoji/{Data}"      #이미지 경로
-            img_tag = f'<img src="{emoji_path}" width="100" height="100"><br><br>'
-            self.Text_Chat.append(emogi_data)
-            self.Text_Chat.insertHtml("<br><br>")
-            self.Text_Chat.insertHtml(img_tag)
+        if '**' in display_text:
+            by, display_text2 = display_text.split('**', 1)
+            Data = display_text2.split('\n')[1]
+            emoji_data = display_text2.split('\n')[0]
+
+            #이모티콘 출력
+            #emoji : \x65\x6D\x6F\x6A\x69
+            if by.startswith('\x65\x6D\x6F\x6A\x69'):     
+                emoji_path = f":/emoji/{Data}"      #이미지 경로
+                img_tag = f'<img src="{emoji_path}" width="100" height="100"><br><br>'
+                self.Text_Chat.append(emoji_data)
+                self.Text_Chat.insertHtml("<br><br>")
+                self.Text_Chat.insertHtml(img_tag)
+
+            #채팅 출력
+            #chat : \x63\x68\x61\x74
+            elif by.startswith('\x63\x68\x61\x74'):
+                self.Text_Chat.insertHtml("<br>")
+                self.Text_Chat.append(display_text2)
+                self.Text_Chat.insertHtml("<br><br>")
+
+            #메시지 창이 가득 차면 자동으로 아래로 스크롤
+            scrollbar = self.Text_Chat.verticalScrollBar()
+            scrollbar.setValue(scrollbar.maximum())
+        
         else:
             self.Text_Chat.insertHtml("<br>")
             self.Text_Chat.append(display_text)
             self.Text_Chat.insertHtml("<br><br>")
 
-        #메시지 창이 가득 차면 자동으로 아래로 스크롤
-        scrollbar = self.Text_Chat.verticalScrollBar()
-        scrollbar.setValue(scrollbar.maximum())
+            #메시지 창이 가득 차면 자동으로 아래로 스크롤
+            scrollbar = self.Text_Chat.verticalScrollBar()
+            scrollbar.setValue(scrollbar.maximum())
 
     #메시지 서버로 보내기
     def send(self):
         message = self.Input_inputBox.toPlainText()
-        if message:    
-            send_message(message)  
+        if message:
+            chat_byte = '\x63\x68\x61\x74'    #메시지
+            send_message(chat_byte, message)  
             self.Input_inputBox.clear()  #메시지 보낸 후 입력창 비우기
 
     def executeChangeNickname(self):
