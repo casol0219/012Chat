@@ -67,7 +67,7 @@ def groupChat(c_socket, addr):
 
             #귓속말 기능
             elif msg_bytes.startswith(b'\x2F\x77\x20'):
-                whisper(recvMessage,sendTime,c_name,c_list,nickname,c_socket)
+                whisper(recvMessage,sendTime,c_name,c_list,nickname,c_socket, check_by)
 
             #존재하지 않는 명령어 입력했을 때
             elif msg_bytes.startswith(b'\x2F'):
