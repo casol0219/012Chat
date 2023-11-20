@@ -36,7 +36,7 @@ def receive(c_socket, window, callback):
                     display_text = f"{byt}**{nickname}   {datetime}\n{data}"
                     callback(display_text)
                 
-                elif ':::::' in decoded_data:
+                elif recvData.startswith(b"\x3A\x3A\x3A\x3A\x3A"):
                     data=decoded_data.split(':::::')[1]
                     display_text=f"\n{data}"
                     callback(display_text)
