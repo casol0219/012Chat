@@ -30,6 +30,7 @@ def groupChat(c_socket, addr):
         client.send(user_update_data)
         time.sleep(0.5)
         client.send(f":::::[ {nickname} 님이 입장하셨습니다. ]".encode('utf-8'))
+    c_socket.send(f":::::012Chat에 오신 것을 환영합니다!\n[/w 상대방이름 보낼메시지] 를 입력하여 귓속말을 보낼 수 있습니다.".encode('utf-8'))
     
     bytes_header = (b'\x80', b'\x81')
 
