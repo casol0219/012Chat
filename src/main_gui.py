@@ -58,6 +58,8 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.status = "Online"
         self.emojiWidget = None
         self.Text_myName = None
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.memberTable = QtWidgets.QListWidget(self.centralwidget)
         self.executeChangeNickname()
         # 신호를 슬롯에 연결
         self.receivedData.connect(self.print_data)
@@ -66,7 +68,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         connect_to_server(self,update_ui_with_data)
 
     # 메인 윈도우가 닫힐 때 호출되는 메서드
-    def closeEvent(self):
+    def closeEvent(self,event):
         close_connection()
     
     #__init__ end
@@ -79,7 +81,6 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         MainWindow.setStyleSheet("* {\n"
 "    color: #343a40;\n"
 "}")
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setMinimumSize(QtCore.QSize(1280, 832))
         self.centralwidget.setMaximumSize(QtCore.QSize(1280, 832))
         self.centralwidget.setObjectName("centralwidget")
@@ -216,7 +217,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         #닉네임 편집버튼 함수연결 start
         self.Btn_edit.clicked.connect(self.executeChangeNickname)
         #닉네임 편집버튼 함수연결 end
-        self.memberTable = QtWidgets.QListWidget(self.centralwidget)
+        print("setting memberTable")
         self.memberTable.setGeometry(QtCore.QRect(44, 262, 311, 498))
         self.memberTable.setFont(QtGui.QFont(self.families[0], 11))
         self.memberTable.setStyleSheet("QListWidget {\n"
