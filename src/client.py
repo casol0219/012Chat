@@ -31,8 +31,8 @@ def receive(c_socket, window, callback):
                 decoded_data = recvData.decode('utf-8')
             
                 display_text = ""
-                if decoded_data.count('**') >= 3:
-                    nickname, datetime, data, byt = decoded_data.split('**', 3)
+                if recvData.startswith(b"\x30\x31\x32\x73"):
+                    server_bytes,nickname, datetime, data, byt = decoded_data.split('**', 4)
                     display_text = f"{byt}**{nickname}   {datetime}\n{data}"
                     callback(display_text)
                 
