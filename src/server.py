@@ -35,6 +35,7 @@ def groupChat(c_socket, addr):
     bytes_header = (b'\x80', b'\x81')
 
     while True:
+        server_bytes=b"\x30\x31\x32\x73"
         try:
             data = c_socket.recv(1024)
             if not data.startswith(bytes_header):
@@ -86,7 +87,7 @@ def groupChat(c_socket, addr):
                     #자신 포함 모든 접속자에게 메시지 전송
                     for client in c_list:
                         #발신자 정보, 시간, 금칙어 처리 메시지 보내기
-                        client.send(f'{nickname}**{sendTime}**{filtered_data}**{check_by}'.encode('utf-8'))
+                        client.send(server_bytes+f'**{nickname}**{sendTime}**{filtered_data}**{check_by}'.encode('utf-8'))
 
                 #이모티콘     
                 elif check_by.startswith('\x65\x6D\x6F\x6A\x69'):
@@ -96,7 +97,7 @@ def groupChat(c_socket, addr):
                     #자신 포함 모든 접속자에게 메시지 전송
                     for client in c_list:
                         #발신자 정보, 시간, 금칙어 처리 메시지 보내기
-                        client.send(f'{nickname}**{sendTime}**{recvMessage}**{check_by}'.encode('utf-8'))
+                        client.send(server_bytes+f'{nickname}**{sendTime}**{recvMessage}**{check_by}'.encode('utf-8'))
                                    
         except ConnectionResetError as e:
             print(f">> {nickname} 님이 대화방을 나갔습니다.")
