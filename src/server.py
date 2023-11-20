@@ -97,7 +97,7 @@ def groupChat(c_socket, addr):
                     #자신 포함 모든 접속자에게 메시지 전송
                     for client in c_list:
                         #발신자 정보, 시간, 금칙어 처리 메시지 보내기
-                        client.send(server_bytes+f'{nickname}**{sendTime}**{recvMessage}**{check_by}'.encode('utf-8'))
+                        client.send(server_bytes+f'**{nickname}**{sendTime}**{recvMessage}**{check_by}'.encode('utf-8'))
                                    
         except ConnectionResetError as e:
             print(f">> {nickname} 님이 대화방을 나갔습니다.")
